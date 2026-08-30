@@ -6,7 +6,7 @@
   programs.zsh = {
     enable = true;
     syntaxHighlighting.enable = true;
-    enableAutosuggestion = true;
+    enableCompletion= true;
   };
 
   programs.kitty = {
