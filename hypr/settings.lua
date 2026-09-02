@@ -1,0 +1,2 @@
+-- ~/.config/hypr/settings.lua
+

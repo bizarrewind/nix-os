@@ -1,13 +1,17 @@
 { config, pkgs, ... }:
 
 {
-  # Include other configuration files (hardware details and package lists)
+  # Include other configuration files (hardware details, packages, theming)
   imports = [
     ./hardware-configuration.nix
     ./pkgs.nix
     ./coding.nix
+    ./stylix.nix
   ];
-
+  #for claude to save authentication
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.sddm.enableGnomeKeyring = true;
+  
   virtualisation.docker.enable = true;
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs;[
@@ -15,12 +19,6 @@
     zlib 
     ];
 
-home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    users.vexil = import ./home-manager.nix;
-  };
-# Adds your user (e.g., 'vexil') to the docker group so you don't need 'sudo docker'
 
   # Setup Intel graphics hardware acceleration for better video performance
   hardware.graphics = {
@@ -116,10 +114,14 @@ home-manager = {
     isNormalUser = true;
     description = "Vexil";
     extraGroups = [ "networkmanager" "wheel" "docker"]; # Gives admin (sudo) access
+    shell = pkgs.zsh;
     packages = with pkgs; [
       kdePackages.kate
     ];
   };
+
+  # Enable system-level zsh configuration
+  programs.zsh.enable = true;
 
   # Enable web browser and allow installation of proprietary packages
   programs.firefox.enable = true;
@@ -129,6 +131,8 @@ home-manager = {
   environment.systemPackages = with pkgs; [
     vim
     wget
+    home-manager
+    gnome-keyring
   ];
 
   # NixOS version compatibility flag (keep at the version you installed)
