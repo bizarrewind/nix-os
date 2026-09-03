@@ -1,5 +1,5 @@
 /* =============================================================================
-   EWW Applet Styles — macOS Liquid Glass
+   EWW Applet Styles — macOS Crystal UI
    Dragon Wallpaper Palette
    ============================================================================= */
 
@@ -40,10 +40,10 @@
 .applet-card {
   background-color: $bg_card;
   border: 1px solid $glass_border;
-  border-radius: 16px;
+  border-radius: 12px;
   padding: 16px;
 
-  /* Liquid Glass specular highlight on top edge */
+  /* Crystal UI specular highlight on top edge */
   box-shadow:
     inset 0 1px 0 $specular,
     0 16px 48px rgba(0, 0, 0, 0.80),
@@ -80,7 +80,7 @@
 .disconnect-btn {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid $glass_border;
-  border-radius: 8px;
+  border-radius: 12px;
   padding: 3px 10px;
   color: $text_muted;
   font-size: 11px;
@@ -97,7 +97,7 @@
   background: rgba(212, 98, 42, 0.12);
   border-color: rgba(212, 98, 42, 0.22);
   color: $ember;
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 6px 12px;
 }
 
@@ -119,13 +119,13 @@
 
 .volume-slider trough {
   background: rgba(255, 255, 255, 0.10);
-  border-radius: 6px;
+  border-radius: 12px;
   min-height: 6px;
 }
 
 .volume-slider highlight {
   background: linear-gradient(90deg, $fire_amber 0%, $fire_gold 100%);
-  border-radius: 6px;
+  border-radius: 12px;
 }
 
 .volume-slider slider {
@@ -145,7 +145,7 @@
 /* ── WiFi info ───────────────────────────────────────────────────────────── */
 .wifi-info-row {
   background: rgba(255,255,255,0.04);
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 10px 12px;
   border: 1px solid rgba(255,255,255,0.06);
 }

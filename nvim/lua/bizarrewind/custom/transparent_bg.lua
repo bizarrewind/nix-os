@@ -36,7 +36,7 @@ local function set_transparent_bg()
 
 	local hl = vim.api.nvim_set_hl
 
-	-- Liquid Glass highlights
+	-- Crystal UI highlights
 	hl(0, "LineNr",           { fg = palette.smoke })
 	hl(0, "CursorLineNr",     { fg = palette.fire_gold, bold = true })
 	hl(0, "CursorLine",       { bg = palette.ash_dark })

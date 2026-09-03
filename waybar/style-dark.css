@@ -1,5 +1,5 @@
 /* =============================================================================
-   macOS Liquid Glass Waybar  —  Dragon Wallpaper Palette
+   macOS Crystal UI Waybar  —  Dragon Wallpaper Palette
    Authentic specular highlights · vibrancy · multi-layer blur · pill capsules
    ============================================================================= */
 
@@ -16,12 +16,12 @@
     min-height: 0;
 }
 
-/* ── Bar shell — macOS Liquid Glass ──────────────────────────────────────── */
+/* ── Bar shell — macOS Crystal UI ──────────────────────────────────────── */
 window#waybar {
     /* Deep warm-tinted translucent base — picks up dragon fire amber */
     background-color: rgba(18, 13, 8, 0.45);
     border: 1px solid @glass_border;
-    border-radius: 20px;
+    border-radius: 12px;
     color: @text_bright;
 
     transition-property: background-color, border-color;
@@ -38,7 +38,7 @@ window#waybar {
 
 /* ══════════════════ LEFT ══════════════════════════════════════════════════ */
 
-/* App Launcher — bright gold Liquid Glass pill */
+/* App Launcher — bright gold Crystal UI pill */
 #custom-launcher {
     font-size: 17px;
     color: @fire_gold;
@@ -69,7 +69,7 @@ window#waybar {
         0 2px 6px rgba(0,0,0,0.30);
     margin: 4px 4px;
     padding: 2px 4px;
-    border-radius: 14px;
+    border-radius: 12px;
     transition: all 0.22s ease;
 }
 
@@ -84,7 +84,7 @@ window#waybar {
         inset 0 1px 0 rgba(255, 255, 255, 0.35);
     margin: 4px 4px;
     padding: 2px 4px;
-    border-radius: 14px;
+    border-radius: 12px;
     transition: all 0.22s ease;
 }
 
@@ -92,7 +92,7 @@ window#waybar {
 #workspaces button {
     padding: 0 9px;
     margin: 2px 2px;
-    border-radius: 10px;
+    border-radius: 12px;
     color: @text_muted;
     background: transparent;
     transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
@@ -146,7 +146,7 @@ window#waybar.empty #window {
         inset 0 1px 0 rgba(255, 255, 255, 0.35);
     margin: 4px 0;
     padding: 0 16px;
-    border-radius: 14px;
+    border-radius: 12px;
     letter-spacing: 0.02em;
     transition: all 0.22s ease;
 }
@@ -173,7 +173,7 @@ window#waybar.empty #window {
     color: @text_bright;
     padding: 0 9px;
     margin: 2px 2px;
-    border-radius: 10px;
+    border-radius: 12px;
     background: transparent;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -191,7 +191,7 @@ window#waybar.empty #window {
     color: @text_bright;
     padding: 0 7px;
     margin: 2px 2px;
-    border-radius: 10px;
+    border-radius: 12px;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -231,7 +231,7 @@ window#waybar.empty #window {
     to   { background-color: rgba(212, 98, 42, 0.25); color: #ffffff; }
 }
 
-/* Liquid Glass hover — shared for all right modules */
+/* Crystal UI hover — shared for all right modules */
 #network:hover,
 #backlight:hover,
 #wireplumber:hover,
@@ -268,7 +268,7 @@ window#waybar.empty #window {
     font-size: 13px;
     margin: 4px 6px 4px 4px;
     padding: 0 12px;
-    border-radius: 10px;
+    border-radius: 12px;
     transition: all 0.22s ease;
 }
 

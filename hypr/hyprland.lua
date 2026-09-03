@@ -57,8 +57,8 @@ local inactive_border = has_colors and colors.inactive_border or "rgba(14141d88)
 -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
 hl.config({
 	general = {
-		gaps_in = 6,
-		gaps_out = 6,
+		gaps_in = 3,
+		gaps_out = 2,
 
 		border_size = 2,
 
@@ -79,10 +79,10 @@ hl.config({
 	},
 
 	decoration = {
-		rounding = 14,
+		rounding = 16,
 		rounding_power = 2,
 
-		-- Liquid glass transparency for windows
+		-- Crystal UI transparency for windows
 		active_opacity = 0.93,
 		inactive_opacity = 0.85,
 
@@ -149,19 +149,19 @@ hl.animation({ leaf = "zoomFactor", enabled = true, speed = 7, bezier = "quick" 
 -- Ref https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
 -- "Smart gaps" / "No gaps when only"
 -- uncomment all if you wish to use that.
--- hl.workspace_rule({ workspace = "w[tv1]", gaps_out = 0, gaps_in = 0 })
--- hl.workspace_rule({ workspace = "f[1]",   gaps_out = 0, gaps_in = 0 })
+-- hl.workspace_rule({ workspace = "w[tv1]", gaps_out = 2, gaps_in = 0 })
+-- hl.workspace_rule({ workspace = "f[1]",   gaps_out = 2, gaps_in = 0 })
 -- hl.window_rule({
 --     name  = "no-gaps-wtv1",
 --     match = { float = false, workspace = "w[tv1]" },
 --     border_size = 0,
---     rounding    = 0,
+--     rounding = 16,
 -- })
 -- hl.window_rule({
 --     name  = "no-gaps-f1",
 --     match = { float = false, workspace = "f[1]" },
 --     border_size = 0,
---     rounding    = 0,
+--     rounding = 16,
 -- })
 
 -- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/ for more
@@ -353,11 +353,18 @@ hl.layer_rule({
 })
 
 hl.layer_rule({
-	name = "orbit-blur",
+	name  = "orbit-blur",
 	match = { namespace = "orbit" },
-	blur = true,
+	blur  = true,
 	ignore_alpha = 0.0,
 	animation = "fade",
+})
+
+hl.window_rule({
+	name = "picture-in-picture",
+	match = { title = "^Picture-in-Picture$" },
+	float = true,
+	pin = true,
 })
 
 hl.layer_rule({
@@ -365,4 +372,19 @@ hl.layer_rule({
 	match = { namespace = "swaync-control-center" },
 	blur = true,
 	ignore_alpha = 0.0,
+})
+
+hl.layer_rule({
+	name = "swaync-notification-blur",
+	match = { namespace = "swaync-notification-window" },
+	blur = true,
+	ignore_alpha = 0.1,
+})
+
+hl.window_rule({
+	name = "control-center-float",
+	match = { class = "ControlCenter" },
+	float = true,
+	size = "720 700",
+	center = true,
 })

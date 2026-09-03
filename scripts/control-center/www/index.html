@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Center</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <h1>Settings</h1>
+    </div>
+    
+    <div class="settings-container">
+        
+        <div class="section-title">Hyprland Appearance</div>
+        <div class="list-group">
+            <div class="list-item">
+                <span class="label">Inner Gaps</span>
+                <div class="control">
+                    <span class="val-text" id="val-gaps-in">0</span>
+                    <input type="range" id="gaps-in" min="0" max="30" value="0">
+                </div>
+            </div>
+            <div class="list-item">
+                <span class="label">Outer Gaps</span>
+                <div class="control">
+                    <span class="val-text" id="val-gaps-out">0</span>
+                    <input type="range" id="gaps-out" min="0" max="50" value="0">
+                </div>
+            </div>
+            <div class="list-item">
+                <span class="label">Border Rounding</span>
+                <div class="control">
+                    <span class="val-text" id="val-rounding">0</span>
+                    <input type="range" id="rounding" min="0" max="30" value="0">
+                </div>
+            </div>
+            <div class="list-item">
+                <span class="label">Active Opacity</span>
+                <div class="control">
+                    <span class="val-text" id="val-active-opacity">1.0</span>
+                    <input type="range" id="active-opacity" min="0.1" max="1.0" step="0.05" value="1.0">
+                </div>
+            </div>
+            <div class="list-item">
+                <span class="label">Inactive Opacity</span>
+                <div class="control">
+                    <span class="val-text" id="val-inactive-opacity">1.0</span>
+                    <input type="range" id="inactive-opacity" min="0.1" max="1.0" step="0.05" value="1.0">
+                </div>
+            </div>
+            <div class="list-item">
+                <span class="label">Glass Blur</span>
+                <label class="ios-toggle">
+                    <input type="checkbox" id="toggle-blur">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="list-item">
+                <span class="label">Animations</span>
+                <label class="ios-toggle">
+                    <input type="checkbox" id="toggle-animations">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="section-title">Status Bar (Waybar)</div>
+        <div class="list-group">
+            <div class="list-item">
+                <span class="label">Pill Rounding</span>
+                <div class="control">
+                    <span class="val-text" id="val-waybar-radius">12</span>
+                    <input type="range" id="waybar-radius" min="0" max="30" value="12">
+                </div>
+            </div>
+        </div>
+        <div class="list-group" id="waybar-modules">
+            <!-- Populated by JS -->
+        </div>
+        
+        <div class="section-title">Wallpaper Themes (Matugen)</div>
+        <div class="pie-selector-container">
+            <div class="pie-selector" id="pie-selector">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+        
+        <div class="wallpaper-grid" id="wallpaper-grid">
+            <div class="wall-item upload-btn" id="btn-upload">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"></path></svg>
+                <input type="file" id="file-upload" accept="image/png, image/jpeg" style="display:none">
+            </div>
+            <!-- Populated by JS -->
+        </div>
+
+        <div class="actions">
+            <button id="btn-save" class="btn primary">Apply & Save (Rebuild)</button>
+        </div>
+    </div>
+
+    <!-- Hidden canvas for palette extraction -->
+    <canvas id="palette-canvas" style="display:none;"></canvas>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 /* =============================================================================
-   Rofi — macOS Liquid Glass Theme
+   Rofi — macOS Crystal UI Theme
    Palette: fire-gold, fire-amber, ember-orange, ice-blue, smoke-grey
    ============================================================================= */
 
@@ -18,14 +18,14 @@
     icon-theme:      "Papirus-Dark";
 
     /* Glass surfaces */
-    bg-base:         rgba(12, 9, 5, 0.45);
-    bg-card:         rgba(20, 20, 29, 0.65);
-    bg-input:        rgba(35, 26, 16, 0.45);
-    bg-selected:     rgba(232, 168, 58, 0.25);
+    bg-base:         rgba(255, 255, 255, 0.15);
+    bg-card:         rgba(255, 255, 255, 0.15);
+    bg-input:        rgba(255, 255, 255, 0.10);
+    bg-selected:     rgba(255, 255, 255, 0.25);
 
     /* Borders / glass */
-    border-glass:    rgba(255, 255, 255, 0.16);
-    border-selected: rgba(232, 168, 58, 0.55);
+    border-glass:    rgba(255, 255, 255, 0.40);
+    border-selected: rgba(255, 255, 255, 0.60);
     specular:        rgba(255, 255, 255, 0.38);
 
     /* Text */
@@ -47,7 +47,7 @@
 /* ── Window / root ──────────────────────────────────────────────────────────── */
 window {
     width:            560px;
-    border-radius:    18px;
+    border-radius:    12px;
     background-color: var(bg-card);
     border:           1px;
     border-color:     var(border-glass);
@@ -65,7 +65,7 @@ mainbox {
 /* ── Input / search bar ─────────────────────────────────────────────────────── */
 inputbar {
     background-color: var(bg-input);
-    border-radius:    18px 18px 0 0;
+    border-radius:    12px 12px 0 0;
     padding:          13px 18px;
     spacing:          10px;
     children:         [ prompt, entry ];
@@ -102,7 +102,7 @@ button {
     background-color: rgba(255, 255, 255, 0.05);
     border:           1px;
     border-color:     var(border-glass);
-    border-radius:    8px;
+    border-radius:    12px;
     padding:          4px 14px;
     text-color:       var(text-muted);
     font:             "JetBrainsMono Nerd Font 11";
@@ -122,7 +122,7 @@ listview {
     spacing:          3px;
     lines:            7;
     scrollbar:        true;
-    border-radius:    0 0 18px 18px;
+    border-radius:    0 0 12px 12px;
     fixed-height:     true;
 }
 
@@ -132,14 +132,14 @@ scrollbar {
     background-color: transparent;
     handle-color:     rgba(255, 255, 255, 0.15);
     handle-width:     4px;
-    border-radius:    2px;
+    border-radius:    12px;
     padding:          2px;
 }
 
 /* ── List entries ────────────────────────────────────────────────────────────── */
 element {
     background-color: transparent;
-    border-radius:    10px;
+    border-radius:    12px;
     padding:          8px 12px;
     spacing:          10px;
     cursor:           pointer;
@@ -155,7 +155,7 @@ element selected.active {
 
 element-icon {
     size:             26px;
-    border-radius:    6px;
+    border-radius:    12px;
     vertical-align:   0.5;
 }
 

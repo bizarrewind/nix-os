@@ -10,7 +10,7 @@
 .control-center {
     background: rgba(18, 13, 8, 0.45);
     border: 1px solid @glass_border;
-    border-radius: 18px;
+    border-radius: 12px;
     padding: 12px;
     box-shadow:
         inset 0 1px 0 @specular,
@@ -179,6 +179,48 @@
     border-radius: 50%;
     min-width: 16px;
     min-height: 16px;
+}
+
+/* ── MPRIS Player ──────────────────────────────────────────────────────────── */
+.widget-mpris {
+    background: @bg_widget;
+    border: 1px solid @glass_border;
+    border-radius: 12px;
+    margin: 4px 6px;
+    padding: 10px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+.widget-mpris-player {
+    padding: 6px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.widget-mpris-title {
+    font-weight: bold;
+    font-size: 14px;
+    color: @text_bright;
+}
+
+.widget-mpris-subtitle {
+    font-size: 12px;
+    color: @text_muted;
+}
+
+.widget-mpris-player > box > button {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    color: @text_bright;
+    min-width: 32px;
+    min-height: 32px;
+    margin: 0 4px;
+    transition: all 0.2s ease;
+}
+
+.widget-mpris-player > box > button:hover {
+    background: rgba(232, 168, 58, 0.25);
+    color: @fire_gold;
 }
 
 /* ── Notifications ─────────────────────────────────────────────────────────── */

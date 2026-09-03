@@ -1,5 +1,5 @@
 /* =============================================================================
-   wlogout — Apple-Style Liquid Glass Power Menu
+   wlogout — Apple-Style Crystal UI Power Menu
    Centered 4-button modal with clean SVG icons & frosted glass
    ============================================================================= */
 
@@ -14,7 +14,7 @@ window {
 button {
     background-color: rgba(28, 28, 35, 0.72);
     border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 20px;
+    border-radius: 12px;
     margin: 10px;
     padding-top: 70px;
     padding-bottom: 20px;

@@ -1,11 +1,7 @@
 { pkgs, inputs, ... }:
 
 {
-  environment.systemPackages = [
-    # Flake input placed outside the 'with pkgs;' block
-    inputs.claude-desktop.packages.${pkgs.system}.default
-  ] ++ (with pkgs; [
-
+  environment.systemPackages = with pkgs; [
     # --- Hyprland Desktop Shell ---
     waybar                    # Status bar
     rofi                      # App launcher & menu (2.0 has native Wayland)
@@ -67,7 +63,7 @@
 
     # --- Games & Fun ---
     osu-lazer-bin
-  ]);
+  ];
 
   fonts.packages = with pkgs; [
     noto-fonts

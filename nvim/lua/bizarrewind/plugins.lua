@@ -6,6 +6,30 @@ return {
   -- ── Icons ──────────────────────────────────────────────────────────────────
   { "nvim-tree/nvim-web-devicons", lazy = true },
 
+  -- ── Theme (Base16 Dynamic) ─────────────────────────────────────────────────
+  {
+    "echasnovski/mini.base16",
+    config = function()
+      -- Load the dynamically generated Stylix palette if it exists
+      local palette_path = vim.fn.expand("~/.config/dynamic-colors/nvim-palette.lua")
+      if vim.fn.filereadable(palette_path) == 1 then
+        local palette = dofile(palette_path)
+        require("mini.base16").setup({
+          palette = {
+            base00 = palette.base00, base01 = palette.base01,
+            base02 = palette.base02, base03 = palette.base03,
+            base04 = palette.base04, base05 = palette.base05,
+            base06 = palette.base06, base07 = palette.base07,
+            base08 = palette.base08, base09 = palette.base09,
+            base0A = palette.base0A, base0B = palette.base0B,
+            base0C = palette.base0C, base0D = palette.base0D,
+            base0E = palette.base0E, base0F = palette.base0F,
+          }
+        })
+      end
+    end
+  },
+
   -- ── Which-key (show keybind hints) ─────────────────────────────────────────
   {
     "folke/which-key.nvim",
@@ -62,7 +86,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     config = function()
-      require("nvim-treesitter.configs").setup({
+      require("nvim-treesitter").setup({
         ensure_installed = {
           "nix", "bash", "lua", "luadoc", "vim", "vimdoc",
           "c", "java", "kotlin", "python",
@@ -81,7 +105,6 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     event        = "VimEnter",
-    branch       = "0.1.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make",
@@ -211,8 +234,13 @@ return {
         kotlin_language_server = {},
       }
 
+      local ensure_installed = vim.tbl_keys(servers)
+      vim.list_extend(ensure_installed, { "stylua" })
+      -- nil_ls is tricky to install via Mason on NixOS, it's better provided by Nix itself.
+      ensure_installed = vim.tbl_filter(function(v) return v ~= "nil_ls" end, ensure_installed)
+
       require("mason-tool-installer").setup({
-        ensure_installed = vim.list_extend(vim.tbl_keys(servers), { "stylua" }),
+        ensure_installed = ensure_installed,
       })
       require("mason-lspconfig").setup({
         ensure_installed = {},

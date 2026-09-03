@@ -82,7 +82,13 @@ function _G.MyTabline()
 end
 
 vim.api.nvim_set_hl(0, "TabLine",     { bg = "NONE", fg = "#888888" })
-vim.api.nvim_set_hl(0, "TabLineSel",  { fg = "#ffffff", bg = "#444444", bold = true })
-vim.api.nvim_set_hl(0, "TabLineFill", { bg = "NONE" })
-vim.api.nvim_set_hl(0, "StatusLine",  { bg = "NONE", fg = "#cccccc" })
-vim.api.nvim_set_hl(0, "StatusLineNC",{ bg = "NONE", fg = "#666666" })
+vim.api.nvim_create_autocmd("ColorScheme", {
+  group = vim.api.nvim_create_augroup("CustomHighlights", { clear = true }),
+  callback = function()
+    vim.api.nvim_set_hl(0, "TabLineSel",  { fg = "#ffffff", bg = "#444444", bold = true })
+    vim.api.nvim_set_hl(0, "TabLineFill", { bg = "NONE" })
+    vim.api.nvim_set_hl(0, "StatusLine",  { bg = "NONE", fg = "#cccccc" })
+    vim.api.nvim_set_hl(0, "StatusLineNC",{ bg = "NONE", fg = "#666666" })
+    vim.api.nvim_set_hl(0, "BlinkCmpGhostText", { fg = "#666666", italic = true })
+  end,
+})

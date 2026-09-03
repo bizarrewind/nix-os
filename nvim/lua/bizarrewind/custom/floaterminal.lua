@@ -33,7 +33,7 @@ local function create_floating_window(opts)
 
 	-- Create a new buffer and set it as a floating window
 	local buf = nil
-	if vim.api.nvim_buf_is_valid(opts.buf) then
+	if opts.buf and vim.api.nvim_buf_is_valid(opts.buf) then
 		buf = opts.buf
 	else
 		buf = vim.api.nvim_create_buf(false, true)
@@ -93,11 +93,11 @@ local function autoexec2()
 
 	if not vim.api.nvim_win_is_valid(state.floating.win) then
 		state.floating = create_floating_window({ buf = state.floating.buf })
-		if vim.bo[state.floating.buf].buftype ~= "terminal" then
-			vim.cmd.terminal()
-		end
-		send_to_terminal(vim.bo[state.floating.buf].channel, command)
 	end
+	if vim.bo[state.floating.buf].buftype ~= "terminal" then
+		vim.cmd("terminal")
+	end
+	send_to_terminal(vim.bo[state.floating.buf].channel, command)
 end
 
 vim.keymap.set({ "n", "t" }, "<space>eu", function()

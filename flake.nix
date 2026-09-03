@@ -18,7 +18,7 @@
     stylix.url = "github:danth/stylix";
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, claude-desktop, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, stylix, ... }@inputs: {
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";

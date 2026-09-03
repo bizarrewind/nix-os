@@ -9,4 +9,4 @@ configuration {
   show-icons:          true;
 }
 
-@theme "~/.config/rofi/themes/liquid-glass.rasi"
+@theme "~/.config/rofi/themes/crystal-ui-dark.rasi"

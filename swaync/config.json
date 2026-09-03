@@ -29,9 +29,11 @@
 
   "widgets": [
     "title",
+    "buttons-grid",
     "volume",
     "backlight",
     "dnd",
+    "mpris",
     "notifications"
   ],
 
@@ -70,6 +72,11 @@
     },
     "dnd": {
       "text": "Do Not Disturb"
+    },
+    "mpris": {
+      "image-size": 72,
+      "image-radius": 12,
+      "blur": true
     }
   }
 }

@@ -13,7 +13,6 @@ in
   # User packages managed via Home Manager (no full system rebuild needed!)
   home.packages = [
     # External flake packages
-    inputs.claude-desktop.packages.${pkgs.system}.default
     orbit
   ] ++ (with pkgs; [
     # Quick user utilities / editors
@@ -32,6 +31,7 @@ in
     unzip
     wget
     curl
+    nil
   ]);
 
   # Dynamic Starship Prompt derived from wallpaper colors
@@ -155,6 +155,9 @@ in
     '';
   };
 
+  programs.vscode.enable = true;
+  programs.firefox.enable = true;
+
   programs.kitty = {
     enable = true;
     font = {
@@ -199,7 +202,7 @@ in
     };
   };
 
-  # ── Dynamically generated color definition files for Liquid Glass Desktop ───
+  # ── Dynamically generated color definition files for Crystal UI Desktop ───
   xdg.configFile."dynamic-colors/waybar.css".text = ''
     @define-color fire_gold       ${c.base0A};
     @define-color fire_amber      ${c.base09};
@@ -237,7 +240,7 @@ in
     $ice_blue:     ${c.base0D};
     $smoke:        ${c.base04};
     $bg_base:      rgba(${toString rgb.base00-rgb-r}, ${toString rgb.base00-rgb-g}, ${toString rgb.base00-rgb-b}, 0.92);
-    $bg_card:      rgba(${toString rgb.base01-rgb-r}, ${toString rgb.base01-rgb-g}, ${toString rgb.base01-rgb-b}, 0.88);
+    $bg_card:      rgba(${toString rgb.base01-rgb-r}, ${toString rgb.base01-rgb-g}, ${toString rgb.base01-rgb-b}, 0.45);
     $glass_border: rgba(255, 255, 255, 0.16);
     $specular:     rgba(255, 255, 255, 0.40);
     $text_bright:  ${c.base05};
@@ -267,7 +270,7 @@ in
   '';
 
   xdg.configFile."dynamic-colors/hyprlock.conf".text = ''
-    $time_color = rgba(${toString rgb.base0A-rgb-r}, ${toString rgb.base0A-rgb-g}, ${toString rgb.base0A-rgb-b}, 0.90)
+    $time_color = rgba(${toString rgb.base05-rgb-r}, ${toString rgb.base05-rgb-g}, ${toString rgb.base05-rgb-b}, 0.90)
     $text_color = rgba(${toString rgb.base05-rgb-r}, ${toString rgb.base05-rgb-g}, ${toString rgb.base05-rgb-b}, 0.85)
     $date_color = rgba(${toString rgb.base04-rgb-r}, ${toString rgb.base04-rgb-g}, ${toString rgb.base04-rgb-b}, 0.90)
     $accent_blue = rgba(${toString rgb.base0D-rgb-r}, ${toString rgb.base0D-rgb-g}, ${toString rgb.base0D-rgb-b}, 0.75)
@@ -287,6 +290,22 @@ in
 
   xdg.configFile."dynamic-colors/nvim-palette.lua".text = ''
     return {
+      base00 = "${c.base00}",
+      base01 = "${c.base01}",
+      base02 = "${c.base02}",
+      base03 = "${c.base03}",
+      base04 = "${c.base04}",
+      base05 = "${c.base05}",
+      base06 = "${c.base06}",
+      base07 = "${c.base07}",
+      base08 = "${c.base08}",
+      base09 = "${c.base09}",
+      base0A = "${c.base0A}",
+      base0B = "${c.base0B}",
+      base0C = "${c.base0C}",
+      base0D = "${c.base0D}",
+      base0E = "${c.base0E}",
+      base0F = "${c.base0F}",
       fire_gold   = "${c.base0A}",
       fire_amber  = "${c.base09}",
       ember       = "${c.base08}",
@@ -306,8 +325,8 @@ in
     margin_bottom = 10
     margin_left = 10
     margin_right = 14
-    window_transition = "slidedown"
-    window_transition_duration = 200
+    window_transition = "none"
+    window_transition_duration = 0
     stack_transition = "slidehorizontal"
     stack_transition_duration = 200
   '';
@@ -322,6 +341,12 @@ in
   '';
 
   xdg.configFile."orbit/style.css".text = ''
+    * {
+      background: none;
+      background-color: transparent;
+      box-shadow: none;
+      border: none;
+    }
     window, window.background {
       background-color: transparent;
       background: none;
@@ -331,32 +356,42 @@ in
     }
     .orbit-panel {
       background-color: rgba(18, 13, 8, 0.45);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      overflow: hidden;
       box-shadow: 
         inset 0 1px 0 rgba(255, 255, 255, 0.42),
         0 8px 40px 0 rgba(0, 0, 0, 0.80);
+      margin: 4px;
     }
     .orbit-header {
-      padding: 10px;
+      padding: 12px 16px 4px 16px;
     }
     .orbit-title {
-      font-family: "JetBrainsMono Nerd Font", monospace;
-      font-weight: bold;
+      font-weight: 800;
       font-size: 16px;
+      color: #f5f0e8;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
     }
     .orbit-tab-bar {
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      margin-bottom: 5px;
+      margin: 0 16px 8px 16px;
+      padding-bottom: 4px;
     }
     .orbit-tab {
-      background: transparent;
       color: #b0bac4;
-      border-radius: 8px;
+      border-radius: 12px;
+      padding: 6px 12px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .orbit-tab:hover {
+      background-color: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
     }
     .orbit-tab.active {
-      background-color: rgba(255, 255, 255, 0.1);
-      color: #dce4e7;
+      background-color: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
     }
   '';
 
@@ -371,8 +406,9 @@ in
 
   # Stylix targets control
   stylix.targets = {
-    waybar.enable = false; # using our custom liquid glass styling with dynamic colors.css
+    waybar.enable = false; # using our custom Crystal UI styling with dynamic colors.css
     hyprlock.enable = false;
+    firefox.profileNames = [ "default" ];
   };
 
   programs.home-manager.enable = true;

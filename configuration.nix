@@ -8,7 +8,7 @@
     ./coding.nix
     ./stylix.nix
   ];
-  #for claude to save authentication
+  # Enable gnome-keyring to save authentication secrets
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.sddm.enableGnomeKeyring = true;
   
