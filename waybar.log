@@ -1,0 +1,7 @@
+[2026-09-03 03:39:45.693] [info] Using configuration file /home/vexil/.config/waybar/config.jsonc
+[2026-09-03 03:39:45.703] [info] Unable to receive desktop appearance: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer 'org.freedesktop.portal.Desktop': startup job failed
+[2026-09-03 03:39:45.703] [info] Using CSS file /home/vexil/.config/waybar/style.css
+[2026-09-03 03:39:45.710] [info] Hyprland IPC starting
+[2026-09-03 03:39:45.711] [info] Loading persistent workspaces from Hyprland workspace rules
+Discharging
+[2026-09-03 03:39:45.767] [info] Bar configured (width: 1252, height: 38) for output: eDP-1

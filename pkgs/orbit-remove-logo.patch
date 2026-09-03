@@ -1,0 +1,19 @@
+--- a/src/ui/header.rs	2026-09-03 03:46:09.290977033 +0530
++++ b/src/ui/header.rs	2026-09-03 03:48:05.626558674 +0530
+@@ -51,7 +51,7 @@
+         logo_container.append(&orbit_icon);
+         
+         let title = gtk::Label::builder()
+-            .label("Orbit")
++            .label("NixOS")
+             .css_classes(["orbit-title"])
+             .hexpand(true)
+             .halign(gtk::Align::Start)
+@@ -83,7 +83,6 @@
+             .valign(gtk::Align::Center)
+             .build();
+         
+-        title_row.append(&logo_container);
+         title_row.append(&title);
+         title_row.append(&power_box);
+         title_row.append(&wired_button);

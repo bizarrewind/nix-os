@@ -16,6 +16,7 @@ hl.bind(mainMod .. " + Q",      hl.dsp.window.close())
 hl.bind(mainMod .. " + SPACE",  hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + E",      hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + B",      hl.dsp.exec_cmd(browser))
+hl.bind(mainMod .. " + O",      hl.dsp.exec_cmd("orbit toggle top-right"))
 
 -- Window States
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
@@ -56,6 +57,9 @@ hl.bind(mainMod .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
 -- Move/resize windows with mainMod + LMB/RMB and dragging
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+
+-- Screenshot
+hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("hyprshot -m region"))
 
 
 -- ==========================================

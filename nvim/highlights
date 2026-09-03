@@ -1,0 +1,19 @@
+local highlights = {
+	NonText = { ctermbg = nil, guibg = nil },
+	Normal = { guibg = nil, ctermbg = nil },
+	NormalNC = { guibg = nil, ctermbg = nil },
+	SignColumn = { ctermbg = nil, guibg = nil },
+	Pmenu = { ctermbg = nil, guibg = nil },
+	FloatBorder = { ctermbg = nil, guibg = nil },
+	NormalFloat = { ctermbg = nil, guibg = nil },
+	TabLine = { ctermbg = nil, guibg = nil },
+	NeoTreeNormal = { guibg = nil, ctermbg = nil }, -- Transparent background for NeoTree
+	NeoTreeNormalNC = { guibg = nil, ctermbg = nil }, -- Transparent background for unfocused NeoTree
+	NeoTreeCursorLine = { guibg = nil, ctermbg = nil }, -- Transparent cursor line in NeoTree
+	NeoTreeIndentMarker = { guibg = nil, ctermbg = nil }, -- Transparent indent markers
+	NeoTreeStatusLine = { guibg = nil, ctermbg = nil }, -- Transparent status line for NeoTree
+}
+
+for group, opts in pairs(highlights) do
+	vim.api.nvim_set_hl(0, group, opts)
+end

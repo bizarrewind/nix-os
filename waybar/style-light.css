@@ -1,0 +1,299 @@
+/* =============================================================================
+   macOS Liquid Glass Waybar  —  Dragon Wallpaper Palette
+   Authentic specular highlights · vibrancy · multi-layer blur · pill capsules
+   ============================================================================= */
+
+/* ── Dynamic Palette from Stylix ─────────────────────────────────────────── */
+@import "/home/vexil/.config/dynamic-colors/waybar.css";
+
+/* ── Reset ────────────────────────────────────────────────────────────────── */
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font", "JetBrainsMono NF", monospace;
+    font-size: 13px;
+    font-weight: 600;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-top: 1.5px solid rgba(255, 255, 255, 0.40);
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.05);
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    color: @text_bright;
+
+    transition-property: background-color, border-color;
+    transition-duration: 0.3s;
+}
+
+/* ── Shared module pill base ──────────────────────────────────────────────── */
+.module {
+    padding: 0 10px;
+    margin: 4px 2px;
+    border-radius: 12px;
+    transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ══════════════════ LEFT ══════════════════════════════════════════════════ */
+
+/* App Launcher — bright gold Liquid Glass pill */
+#custom-launcher {
+    font-size: 17px;
+    color: @fire_gold;
+    background-color: rgba(232, 168, 58, 0.12);
+    border: 1px solid rgba(232, 168, 58, 0.22);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.20);
+    margin: 4px 2px 4px 6px;
+    padding: 0 12px 0 10px;
+    border-radius: 12px;
+    transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#custom-launcher:hover {
+    background-color: @fire_gold;
+    color: #0a0800;
+    border-color: transparent;
+    box-shadow:
+        0 0 16px rgba(232, 168, 58, 0.50),
+        inset 0 1px 0 rgba(255, 255, 255, 0.30);
+}
+
+/* Workspaces Group */
+#workspaces {
+    background-color: @ash_medium;
+    border: 1px solid @glass_border;
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.12),
+        0 2px 6px rgba(0,0,0,0.15);
+    margin: 4px 4px;
+    padding: 2px 4px;
+    border-radius: 14px;
+    transition: all 0.22s ease;
+}
+
+/* System Group Refraction */
+#system, #group-system, .modules-right > widget > box {
+    background-color: @ash_medium;
+    color: @text_bright;
+    font-weight: 600;
+    border: 1px solid @glass_border;
+    box-shadow:
+        0 2px 8px rgba(232, 168, 58, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    margin: 4px 4px;
+    padding: 2px 4px;
+    border-radius: 14px;
+    transition: all 0.22s ease;
+}
+
+
+#workspaces button {
+    padding: 0 9px;
+    margin: 2px 2px;
+    border-radius: 10px;
+    color: @text_muted;
+    background: transparent;
+    transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    min-width: 22px;
+}
+
+#workspaces button:hover {
+    background: rgba(255, 255, 255, 0.10);
+    color: @text_bright;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.15);
+}
+
+#workspaces button.active {
+    background: linear-gradient(135deg, @fire_gold 0%, @fire_amber 100%);
+    color: #0a0800;
+    font-weight: 700;
+    min-width: 26px;
+    box-shadow:
+        0 2px 8px rgba(232, 168, 58, 0.45),
+        inset 0 1px 0 rgba(255,255,255,0.35);
+}
+
+#workspaces button.urgent {
+    background: @ember_orange;
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(212, 98, 42, 0.45);
+}
+
+/* Window title */
+#window {
+    color: @text_muted;
+    font-weight: 500;
+    padding: 0 10px;
+    margin: 4px 0;
+    font-size: 12px;
+}
+
+window#waybar.empty #window {
+    background: transparent;
+}
+
+/* ══════════════════ CENTER ════════════════════════════════════════════════ */
+
+#clock {
+    background-color: @ash_medium;
+    color: @text_bright;
+    font-weight: 600;
+    border: 1px solid @glass_border;
+    box-shadow:
+        0 2px 8px rgba(232, 168, 58, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    margin: 4px 0;
+    padding: 0 16px;
+    border-radius: 14px;
+    letter-spacing: 0.02em;
+    transition: all 0.22s ease;
+}
+
+#clock:hover {
+    background-color: rgba(255, 255, 255, 0.10);
+    border-color: @glass_specular;
+    color: #ffffff;
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.22),
+        0 2px 12px rgba(232,168,58,0.15);
+}
+
+/* ══════════════════ RIGHT ═════════════════════════════════════════════════ */
+
+/* Shared right-side module style */
+#network,
+#backlight,
+#wireplumber,
+#bluetooth,
+#battery,
+#custom-notification,
+#tray {
+    color: @text_bright;
+    padding: 0 9px;
+    margin: 2px 2px;
+    border-radius: 10px;
+    background: transparent;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#network {
+    color: @ice_blue;
+}
+
+#network.disconnected {
+    color: @text_muted;
+    opacity: 0.7;
+}
+
+#tray {
+    color: @text_bright;
+    padding: 0 7px;
+    margin: 2px 2px;
+    border-radius: 10px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Individual accent colors from wallpaper */
+#backlight {
+    color: @fire_amber;
+}
+
+#wireplumber {
+    color: @ice_blue;
+}
+
+#wireplumber.muted {
+    color: @text_muted;
+    opacity: 0.7;
+}
+
+#bluetooth {
+    color: @ice_blue;
+}
+
+#battery {
+    color: #8ec87a;
+}
+
+#battery.warning:not(.charging) {
+    color: @fire_amber;
+}
+
+#battery.critical:not(.charging) {
+    color: @ember_orange;
+    animation: blink 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes blink {
+    from { color: @ember_orange; }
+    to   { background-color: rgba(212, 98, 42, 0.25); color: #ffffff; }
+}
+
+/* Liquid Glass hover — shared for all right modules */
+#network:hover,
+#backlight:hover,
+#wireplumber:hover,
+#bluetooth:hover,
+#battery:hover,
+#custom-notification:hover,
+#tray:hover {
+    background-color: rgba(255, 255, 255, 0.10);
+    color: @text_bright;
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.15),
+        0 1px 4px rgba(0,0,0,0.20);
+}
+
+/* Tray */
+#tray {
+    padding: 0 7px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+}
+
+/* Power Button */
+#custom-power {
+    color: #c28169;
+    background-color: rgba(194, 129, 105, 0.14);
+    border: 1px solid rgba(194, 129, 105, 0.22);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.10);
+    font-size: 13px;
+    margin: 4px 6px 4px 4px;
+    padding: 0 12px;
+    border-radius: 10px;
+    transition: all 0.22s ease;
+}
+
+#custom-power:hover {
+    background-color: rgba(212, 98, 42, 0.75);
+    color: #ffffff;
+    border-color: transparent;
+    box-shadow:
+        0 0 14px rgba(212, 98, 42, 0.45),
+        inset 0 1px 0 rgba(255,255,255,0.20);
+}
+
+/* ── Tooltip ──────────────────────────────────────────────────────────────── */
+tooltip {
+    background: rgba(10, 8, 4, 0.92);
+    border: 1px solid @glass_border;
+    border-radius: 12px;
+    padding: 8px 14px;
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.12),
+        0 8px 24px rgba(0,0,0,0.60);
+}
+
+tooltip label {
+    color: @text_bright;
+    font-size: 12px;
+}

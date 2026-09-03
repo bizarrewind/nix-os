@@ -1,0 +1,74 @@
+; =============================================================================
+; EWW Widgets — Waybar Applets
+; Volume Slider + WiFi Info — macOS Liquid Glass style
+; Dragon Wallpaper Palette: fire_gold #e8a83a | ice_blue #9ab0c8 | ember #d4622a
+; =============================================================================
+
+; ── Variables & Polls ────────────────────────────────────────────────────────
+
+(defvar volume-visible false)
+(defvar wifi-visible   false)
+
+; Live volume level (0–100)
+(defpoll volume-level :interval "1s"
+  "wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{v=$2*100; printf \"%d\", v}'")
+
+; Is sink muted? Returns "true" or "false"
+(defpoll volume-muted :interval "1s"
+  "wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -q MUTED && echo true || echo false")
+
+; ── Volume Applet ─────────────────────────────────────────────────────────────
+
+(defwidget volume-applet []
+  (box :class "applet-shell"
+       :orientation "v"
+       :space-evenly false
+       :spacing 0
+    ; Arrow pointing down to bar
+    (box :class "applet-arrow" :halign "end" :hexpand true)
+    ; Main card
+    (box :class "applet-card"
+         :orientation "v"
+         :space-evenly false
+         :spacing 14
+      ; Header
+      (box :class "applet-header" :spacing 8
+        (label :class "applet-icon volume-icon"
+               :text {volume-muted == "true" ? "󰖁" : "󰕾"})
+        (label :class "applet-title" :text "Volume" :halign "start" :hexpand true)
+        ; Mute toggle
+        (button :class "mute-btn"
+                :onclick "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+          (label :text {volume-muted == "true" ? "Unmute" : "Mute"}))
+      )
+      ; Slider row
+      (box :orientation "h" :spacing 10 :valign "center"
+        (label :class "vol-low" :text "󰕿")
+        (scale :class "volume-slider"
+               :value {volume-level}
+               :min 0 :max 100
+               :orientation "h"
+               :hexpand true
+               :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}%")
+        (label :class "vol-high" :text "󰕾")
+      )
+      ; Percentage label
+      (label :class "vol-pct"
+             :text {volume-muted == "true" ? "Muted" : "${volume-level}%"}
+             :halign "center")
+    )
+  ))
+
+; ── Windows ───────────────────────────────────────────────────────────────────
+
+(defwindow volume-popup
+  :monitor 0
+  :geometry (geometry :x "0px"
+                      :y "56px"
+                      :width "280px"
+                      :anchor "top right")
+  :stacking "overlay"
+  :exclusive false
+  :focusable false
+  (volume-applet))
+

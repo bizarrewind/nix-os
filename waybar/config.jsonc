@@ -8,7 +8,6 @@
   "spacing": 8,
 
   "modules-left": [
-    "custom/launcher",
     "hyprland/workspaces",
     "hyprland/window"
   ],
@@ -16,18 +15,26 @@
     "clock"
   ],
   "modules-right": [
-    "tray",
-    "backlight",
-    "wireplumber",
-    "network",
-    "battery",
-    "custom/notification",
+    "group/system",
     "custom/power"
   ],
 
+  "group/system": {
+    "orientation": "horizontal",
+    "modules": [
+      "tray",
+      "network",
+      "bluetooth",
+      "wireplumber",
+      "backlight",
+      "battery",
+      "custom/notification"
+    ]
+  },
+
   "custom/launcher": {
-    "format": "",
-    "on-click": "rofi -show drun",
+    "format": "NixOS",
+    "on-click": "orbit toggle top-left",
     "tooltip": false
   },
 
@@ -58,11 +65,11 @@
       "weeks-pos": "right",
       "on-scroll": 1,
       "format": {
-        "months": "<span color='#cba6f7'><b>{}</b></span>",
-        "days": "<span color='#cdd6f4'><b>{}</b></span>",
-        "weeks": "<span color='#89b4fa'><b>W{}</b></span>",
-        "weekdays": "<span color='#f9e2af'><b>{}</b></span>",
-        "today": "<span color='#f38ba8'><b><u>{}</u></b></span>"
+        "months": "<span color='#e8a83a'><b>{}</b></span>",
+        "days": "<span color='#f5f0e8'><b>{}</b></span>",
+        "weeks": "<span color='#9ab0c8'><b>W{}</b></span>",
+        "weekdays": "<span color='#c87f3e'><b>{}</b></span>",
+        "today": "<span color='#d4622a'><b><u>{}</u></b></span>"
       }
     },
     "actions": {
@@ -81,20 +88,37 @@
   "wireplumber": {
     "format": "{icon} {volume}%",
     "format-muted": "󰖁 Muted",
-    "on-click": "pavucontrol",
+    "on-click": "pkill pavucontrol || pavucontrol",
+    "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-",
     "format-icons": ["󰕿", "󰖀", "󰕾"]
   },
 
   "network": {
-    "format-wifi": "󰤨 {essid}",
-    "format-ethernet": "󰈀 Eth",
+    "interface": "wlp*",
+    "format-wifi": "󰤨",
+    "format-ethernet": "󰈀",
     "format-linked": "󰈀 (No IP)",
-    "format-disconnected": "󰤭 Offline",
+    "format-disconnected": "󰤭",
+    "format-alt": "󰤨 {essid}",
     "tooltip-format-wifi": "󰤨 {essid} ({signalStrength}%)\nIP: {ipaddr}",
     "tooltip-format-ethernet": "󰈀 {ifname}\nIP: {ipaddr}",
-    "tooltip-format-disconnected": "Disconnected",
-    "max-length": 20,
-    "on-click": "nm-connection-editor"
+    "tooltip-format-disconnected": "󰤭 Disconnected",
+    "on-click": "orbit toggle --tab wifi top-right",
+    "on-click-right": "nm-connection-editor"
+  },
+
+  "bluetooth": {
+    "format": "󰂯",
+    "format-disabled": "󰂲",
+    "format-connected": "󰂱",
+    "tooltip-format": "{controller_alias}\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_battery_percentage}%",
+    "on-click": "orbit toggle --tab bluetooth top-right",
+    "on-click-right": "blueman-manager"
   },
 
   "battery": {
@@ -106,39 +130,39 @@
     "format": "{icon} {capacity}%",
     "format-charging": "󰂄 {capacity}%",
     "format-plugged": "󰂄 {capacity}%",
-    "format-alt": "{icon} {time}",
+    "on-click": "",
     "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
   },
 
   "tray": {
     "icon-size": 15,
-    "spacing": 8
+    "spacing": 8,
+    "ignore-list": ["orbit", "Orbit"]
   },
 
   "custom/notification": {
     "tooltip": false,
     "format": "{icon}",
     "format-icons": {
-      "notification": "󰂚<span foreground='#f38ba8'><sup></sup></span>",
-      "none": "󰂚",
-      "dnd-notification": "󰂛<span foreground='#f38ba8'><sup></sup></span>",
-      "dnd-none": "󰂛",
-      "inhibited-notification": "󰂚<span foreground='#f38ba8'><sup></sup></span>",
-      "inhibited-none": "󰂚",
-      "dnd-inhibited-notification": "󰂛<span foreground='#f38ba8'><sup></sup></span>",
-      "dnd-inhibited-none": "󰂛"
+      "notification": "<span foreground='red'><sup></sup></span>",
+      "none": "",
+      "dnd-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-none": "",
+      "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "inhibited-none": "",
+      "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-inhibited-none": ""
     },
     "return-type": "json",
     "exec-if": "which swaync-client",
     "exec": "swaync-client -swb",
     "on-click": "swaync-client -t -sw",
-    "on-click-right": "swaync-client -d -sw",
     "escape": true
   },
 
   "custom/power": {
     "format": "⏻",
     "tooltip": false,
-    "on-click": "wlogout || hyprctl dispatch exit"
+    "on-click": "wlogout -b 4 -c 0 -r 0 -m 400"
   }
 }

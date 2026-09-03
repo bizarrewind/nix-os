@@ -1,15 +1,24 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
+let
+  # Preset options: Set to null to auto-generate colors from the wallpaper!
+  # Or uncomment any preset group to switch the whole desktop color mood instantly:
+  # Examples from base16-schemes: "catppuccin-mocha", "tokyo-night-dark", "gruvbox-dark-medium", "nord", "dracula", "rose-pine", "kanagawa"
+  colorPreset = null;
+in
 {
   stylix = {
     enable = true;
     autoEnable = true;
     polarity = "dark";
 
-    # Generate palette dynamically from your custom wallpaper
+    # Generate palette dynamically from your wallpaper
     image = ./wallpapers/default.jpg;
 
-    # Mostly Black OLED theme with accent colors dynamically drawn from the wallpaper
+    # If colorPreset is set, use that Base16 scheme; otherwise Stylix auto-extracts from the wallpaper!
+    base16Scheme = lib.mkIf (colorPreset != null) "${pkgs.base16-schemes}/share/themes/${colorPreset}.yaml";
+
+    # Deep OLED Black background with accent colors dynamically drawn from the wallpaper
     override = {
       base00 = "000000"; # Pure OLED Black background
       base01 = "0a0a0f"; # Deep black card/surface
@@ -50,8 +59,8 @@
       size = 24;
     };
 
-    # Preserve custom Catppuccin frosted glass style for Waybar
-    # (Hyprlock is configured directly via ~/.config/hypr/hyprlock.conf)
-    # targets.waybar is a home-manager stylix option, so we keep NixOS level targets clean
+    opacity = {
+      terminal = 0.80;
+    };
   };
 }

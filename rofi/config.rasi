@@ -1,0 +1,12 @@
+configuration {
+  modi:                "drun,run,window,filebrowser";
+  display-drun:        "  Apps";
+  display-run:         "  Run";
+  display-window:      "  Windows";
+  display-filebrowser: "  Files";
+  drun-display-format: "{name}";
+  font:                "JetBrainsMono Nerd Font 13";
+  show-icons:          true;
+}
+
+@theme "~/.config/rofi/themes/liquid-glass.rasi"

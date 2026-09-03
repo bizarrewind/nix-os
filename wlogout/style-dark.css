@@ -1,0 +1,86 @@
+/* =============================================================================
+   wlogout — Apple-Style Liquid Glass Power Menu
+   Centered 4-button modal with clean SVG icons & frosted glass
+   ============================================================================= */
+
+@import "/home/vexil/.config/dynamic-colors/wlogout.css";
+
+/* ── Screen dim overlay ────────────────────────────────────────────────────── */
+window {
+    background-color: rgba(0, 0, 0, 0.20);
+}
+
+/* ── Action buttons ────────────────────────────────────────────────────────── */
+button {
+    background-color: rgba(28, 28, 35, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    margin: 10px;
+    padding-top: 70px;
+    padding-bottom: 20px;
+    min-width: 160px;
+    min-height: 160px;
+    color: #f5f0e8;
+    font-family: "JetBrainsMono Nerd Font", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+
+    background-repeat: no-repeat;
+    background-position: center 22px;
+    background-size: 56px;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.25),
+        0 12px 36px rgba(0, 0, 0, 0.60);
+
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+button:hover {
+    background-color: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.40);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.45),
+        0 16px 44px rgba(0, 0, 0, 0.75);
+}
+
+button:focus {
+    background-color: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.50);
+    outline: none;
+}
+
+/* ── Individual Button Icons & Accents ─────────────────────────────────────── */
+#lock {
+    background-image: image(url("/home/vexil/.config/wlogout/icons/lock.svg"), url("icons/lock.svg"));
+}
+
+#lock:hover {
+    border-color: @ice_blue;
+}
+
+#logout {
+    background-image: image(url("/home/vexil/.config/wlogout/icons/logout.svg"), url("icons/logout.svg"));
+}
+
+#logout:hover {
+    border-color: @fire_amber;
+}
+
+#reboot {
+    background-image: image(url("/home/vexil/.config/wlogout/icons/reboot.svg"), url("icons/reboot.svg"));
+}
+
+#reboot:hover {
+    border-color: @fire_gold;
+}
+
+#shutdown {
+    background-image: image(url("/home/vexil/.config/wlogout/icons/shutdown.svg"), url("icons/shutdown.svg"));
+}
+
+#shutdown:hover {
+    border-color: @ember;
+}

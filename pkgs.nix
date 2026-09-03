@@ -8,8 +8,10 @@
 
     # --- Hyprland Desktop Shell ---
     waybar                    # Status bar
-    rofi              # App launcher & menu
+    rofi                      # App launcher & menu (2.0 has native Wayland)
     swaynotificationcenter  # Notification daemon & control center (swaync)
+    eww                       # Elkowar's Wacky Widgets — inline bar applets
+    networkmanagerapplet      # Network Manager Applet (nm-applet)
     awww                      # Animated wallpaper daemon (swww)
     brightnessctl
     wlogout                   # Power menu / logout dialog
@@ -60,6 +62,8 @@
     starship                  # Modern prompt
     eza                       # Modern replacement for ls with icons
     zoxide                    # Smarter cd command
+
+    google-chrome
 
     # --- Games & Fun ---
     osu-lazer-bin

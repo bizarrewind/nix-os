@@ -1,0 +1,193 @@
+/* =============================================================================
+   Rofi — macOS Liquid Glass Theme
+   Palette: fire-gold, fire-amber, ember-orange, ice-blue, smoke-grey
+   ============================================================================= */
+
+@import "/home/vexil/.config/dynamic-colors/rofi.rasi"
+
+/* ── Color tokens ──────────────────────────────────────────────────────────── */
+* {
+    /* Fallback palette */
+    fire-gold:       #e8a83a;
+    fire-amber:      #d97e28;
+    ember-orange:    #c44b2b;
+    ice-blue:        #6898b8;
+    smoke-grey:      #8c8479;
+
+    /* Icon theme */
+    icon-theme:      "Papirus-Dark";
+
+    /* Glass surfaces */
+    bg-base:         rgba(12, 9, 5, 0.45);
+    bg-card:         rgba(20, 20, 29, 0.65);
+    bg-input:        rgba(35, 26, 16, 0.45);
+    bg-selected:     rgba(232, 168, 58, 0.25);
+
+    /* Borders / glass */
+    border-glass:    rgba(255, 255, 255, 0.16);
+    border-selected: rgba(232, 168, 58, 0.55);
+    specular:        rgba(255, 255, 255, 0.38);
+
+    /* Text */
+    text-bright:     #f5f0e8;
+    text-muted:      #9a9080;
+    text-selected:   #e8a83a;
+    text-placeholder:#5a5248;
+
+    /* Rofi standard assignments */
+    background-color: transparent;
+    text-color:       var(text-bright);
+    border-color:     var(border-glass);
+    separatorcolor:   var(border-glass);
+
+    spacing: 0;
+    padding: 0;
+}
+
+/* ── Window / root ──────────────────────────────────────────────────────────── */
+window {
+    width:            560px;
+    border-radius:    18px;
+    background-color: var(bg-card);
+    border:           1px;
+    border-color:     var(border-glass);
+    padding:          0;
+}
+
+/* ── Main layout ────────────────────────────────────────────────────────────── */
+mainbox {
+    background-color: transparent;
+    padding:          0;
+    spacing:          0;
+    children:         [ inputbar, message, listview ];
+}
+
+/* ── Input / search bar ─────────────────────────────────────────────────────── */
+inputbar {
+    background-color: var(bg-input);
+    border-radius:    18px 18px 0 0;
+    padding:          13px 18px;
+    spacing:          10px;
+    children:         [ prompt, entry ];
+
+    border:           0px 0px 1px 0px;
+    border-color:     var(border-glass);
+}
+
+prompt {
+    background-color: transparent;
+    text-color:       var(fire-gold);
+    font:             "JetBrainsMono Nerd Font Bold 13";
+    vertical-align:   0.5;
+}
+
+entry {
+    background-color: transparent;
+    text-color:       var(text-bright);
+    placeholder:      "Search apps...";
+    placeholder-color: var(text-placeholder);
+    font:             "JetBrainsMono Nerd Font 12";
+    vertical-align:   0.5;
+    cursor:           text;
+}
+
+/* Mode switcher (drun / run / window) */
+mode-switcher {
+    background-color: transparent;
+    padding:          8px 18px 0;
+    spacing:          6px;
+}
+
+button {
+    background-color: rgba(255, 255, 255, 0.05);
+    border:           1px;
+    border-color:     var(border-glass);
+    border-radius:    8px;
+    padding:          4px 14px;
+    text-color:       var(text-muted);
+    font:             "JetBrainsMono Nerd Font 11";
+    cursor:           pointer;
+}
+
+button selected {
+    background-color: var(bg-selected);
+    border-color:     var(border-selected);
+    text-color:       var(fire-gold);
+}
+
+/* ── List ───────────────────────────────────────────────────────────────────── */
+listview {
+    background-color: transparent;
+    padding:          8px;
+    spacing:          3px;
+    lines:            7;
+    scrollbar:        true;
+    border-radius:    0 0 18px 18px;
+    fixed-height:     true;
+}
+
+scrollbar {
+    width:            4px;
+    border:           0;
+    background-color: transparent;
+    handle-color:     rgba(255, 255, 255, 0.15);
+    handle-width:     4px;
+    border-radius:    2px;
+    padding:          2px;
+}
+
+/* ── List entries ────────────────────────────────────────────────────────────── */
+element {
+    background-color: transparent;
+    border-radius:    10px;
+    padding:          8px 12px;
+    spacing:          10px;
+    cursor:           pointer;
+}
+
+element selected.normal,
+element selected.urgent,
+element selected.active {
+    background-color: var(bg-selected);
+    border:           1px;
+    border-color:     var(border-selected);
+}
+
+element-icon {
+    size:             26px;
+    border-radius:    6px;
+    vertical-align:   0.5;
+}
+
+element-text {
+    background-color: transparent;
+    text-color:       var(text-bright);
+    vertical-align:   0.5;
+    font:             "JetBrainsMono Nerd Font 12";
+}
+
+element selected.normal element-text,
+element selected.urgent element-text,
+element selected.active element-text {
+    text-color: var(text-selected);
+}
+
+/* ── Message / error ──────────────────────────────────────────────────────────── */
+message {
+    background-color: transparent;
+    padding:          6px 18px 0;
+}
+
+textbox {
+    background-color: transparent;
+    text-color:       var(text-muted);
+    font:             "JetBrainsMono Nerd Font 11";
+}
+
+/* ── No entries ──────────────────────────────────────────────────────────────── */
+textbox-num-filtered,
+textbox-count {
+    expand:           false;
+    text-color:       var(text-muted);
+    font:             "JetBrainsMono Nerd Font 11";
+}
