@@ -134,7 +134,7 @@ in
       "..." = "cd ../..";
 
       home-switch = "home-manager switch --flake /home/vexil/.dotfiles/nixos#vexil";
-      nix-switch = "sudo nixos-rebuild switch --flake /home/vexil/.dotfiles/nixos#nixos";
+      nix-switch = "sudo nixos-rebuild switch --flake /home/vexil/.dotfiles/nixos#nixos && home-manager switch --flake /home/vexil/.dotfiles/nixos#vexil";
     };
 
     # Dynamic wallpaper palette for ZSH & Eza
