@@ -37,6 +37,7 @@
 
   # Bootloader configuration (Systemd-boot with EFI support)
   boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Network and system name settings
