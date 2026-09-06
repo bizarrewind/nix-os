@@ -8,6 +8,7 @@ hl.on("hyprland.start",function()
 	hl.exec_cmd("swaync")
 
 	hl.exec_cmd("awww-daemon")
+	hl.exec_cmd("bash -c 'sleep 0.6 && if [ -f ~/.config/current_wallpaper ]; then awww img \"$(cat ~/.config/current_wallpaper)\"; fi' &")
 	hl.exec_cmd("hypridle")
 
 	hl.exec_cmd("/run/current-system/sw/libexec/polkit-kde-authentication-agent-1")

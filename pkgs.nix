@@ -55,6 +55,7 @@
     curl
     btop
     ripgrep
+    jq                        # JSON processor for scripts and CLI
     zsh
     starship                  # Modern prompt
     eza                       # Modern replacement for ls with icons

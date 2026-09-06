@@ -10,13 +10,14 @@ BINDS="
 🔍 Win + Space           Application Launcher (Rofi)
 🔁 Alt + Tab             Switch Open Windows (Rofi)
 📋 Win + C               Clipboard History Manager (Rofi)
+🖼️  Win + W               Wallpaper Selector (Live Transition)
 🔔 Win + N               Toggle Notification Drawer (SwayNC)
 🚪 Win + Escape          Power & Session Menu (wlogout)
 🔒 Win + Delete          Lock Screen (hyprlock)
 🪟 Win + V               Toggle Window Float
 ⛶  Win + M               Maximize Window (Retaining Bar)
 🖥️ Win + F               True Fullscreen Toggle
-📸 Win + Shift + S       Region Screenshot (Hyprshot)
+📸 Print / Win+Shift+S   Screenshot Snip (Region / Fullscreen / Window)
 🔀 Win + H / J / K / L   Vim Focus (Left / Down / Up / Right)
 🔄 Win + Shift + H/J/K/L Move Window Position
 ↔️  Win + R               Interactive Window Resize Mode

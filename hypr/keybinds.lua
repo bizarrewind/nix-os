@@ -18,12 +18,13 @@ hl.bind(mainMod .. " + E",      hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + B",      hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + O",      hl.dsp.exec_cmd("orbit toggle top-right"))
 
--- Quick Shell Utilities (Clipboard, Notifications, Power, Windows, Cheatsheet)
+-- Quick Shell Utilities (Clipboard, Notifications, Power, Windows, Wallpaper, Cheatsheet)
 hl.bind(mainMod .. " + C",          hl.dsp.exec_cmd(os.getenv("HOME") .. "/.dotfiles/nixos/scripts/clipboard.sh"))
 hl.bind(mainMod .. " + SHIFT + V",  hl.dsp.exec_cmd(os.getenv("HOME") .. "/.dotfiles/nixos/scripts/clipboard.sh"))
 hl.bind(mainMod .. " + N",          hl.dsp.exec_cmd("swaync-client -t -sw"))
 hl.bind(mainMod .. " + escape",     hl.dsp.exec_cmd("wlogout -b 4 -c 0 -r 0"))
 hl.bind("ALT + Tab",                hl.dsp.exec_cmd("rofi -show window"))
+hl.bind(mainMod .. " + W",          hl.dsp.exec_cmd(os.getenv("HOME") .. "/.dotfiles/nixos/scripts/wallpaper-picker.sh"))
 hl.bind(mainMod .. " + slash",      hl.dsp.exec_cmd(os.getenv("HOME") .. "/.dotfiles/nixos/scripts/keybinds-helper.sh"))
 
 -- Window States
@@ -68,8 +69,11 @@ hl.bind(mainMod .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
--- Screenshot
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("hyprshot -m region"))
+-- Screenshot Hotkeys (Region Snip, Fullscreen, Active Window)
+hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd(os.getenv("HOME") .. "/.dotfiles/nixos/scripts/screenshot.sh region"))
+hl.bind("Print",                   hl.dsp.exec_cmd(os.getenv("HOME") .. "/.dotfiles/nixos/scripts/screenshot.sh fullscreen"))
+hl.bind("SHIFT + Print",           hl.dsp.exec_cmd(os.getenv("HOME") .. "/.dotfiles/nixos/scripts/screenshot.sh region"))
+hl.bind(mainMod .. " + Print",     hl.dsp.exec_cmd(os.getenv("HOME") .. "/.dotfiles/nixos/scripts/screenshot.sh window"))
 
 
 -- ==========================================
