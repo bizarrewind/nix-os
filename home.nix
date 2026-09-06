@@ -137,8 +137,8 @@ in
       ".." = "cd ..";
       "..." = "cd ../..";
 
-      home-switch = "home-manager switch --flake $HOME/.dotfiles/nixos#$USER";
-      nix-switch = "sudo nixos-rebuild switch --flake $HOME/.dotfiles/nixos#nixos && home-manager switch --flake $HOME/.dotfiles/nixos#$USER";
+      home-switch = "home-manager switch -b backup --flake $HOME/.dotfiles/nixos#$USER";
+      nix-switch = "sudo nixos-rebuild switch --flake $HOME/.dotfiles/nixos#nixos && home-manager switch -b backup --flake $HOME/.dotfiles/nixos#$USER";
       dotfiles-update = "$HOME/.dotfiles/nixos/scripts/upgrade.sh";
     };
 
@@ -484,14 +484,14 @@ in
     }
   '';
 
-  # Direct dotfile symlinks for desktop components
-  xdg.configFile."hypr".source    = ./hypr;
-  xdg.configFile."waybar".source  = ./waybar;
-  xdg.configFile."rofi".source    = ./rofi;
-  xdg.configFile."swaync".source  = ./swaync;
-  xdg.configFile."wlogout".source = ./wlogout;
-  xdg.configFile."nvim".source    = ./nvim;
-  xdg.configFile."eww".source     = ./eww;
+  # Direct dotfile symlinks for desktop components (forced to overwrite existing files on any machine)
+  xdg.configFile."hypr"    = { source = ./hypr; force = true; };
+  xdg.configFile."waybar"  = { source = ./waybar; force = true; };
+  xdg.configFile."rofi"    = { source = ./rofi; force = true; };
+  xdg.configFile."swaync"  = { source = ./swaync; force = true; };
+  xdg.configFile."wlogout" = { source = ./wlogout; force = true; };
+  xdg.configFile."nvim"    = { source = ./nvim; force = true; };
+  xdg.configFile."eww"     = { source = ./eww; force = true; };
 
   # Stylix targets control
   stylix.targets = {

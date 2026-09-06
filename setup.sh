@@ -87,7 +87,7 @@ if [[ ! "$RUN_BUILD" =~ ^[Nn]$ ]]; then
     
     echo ""
     echo "Running Home Manager Switch..."
-    home-manager switch --flake ".#$CHOSEN_USER" || home-manager switch --flake ".#$USER"
+    home-manager switch -b backup --flake ".#$CHOSEN_USER" || home-manager switch -b backup --flake ".#$USER"
     
     echo ""
     echo "======================================================"

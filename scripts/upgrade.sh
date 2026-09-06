@@ -92,18 +92,18 @@ if [ "$NEEDS_SYSTEM_REBUILD" = true ]; then
     fi
     
     echo "Executing Home Manager Switch..."
-    if home-manager switch --flake ".#$CURRENT_USER" 2>/dev/null; then
+    if home-manager switch -b backup --flake ".#$CURRENT_USER" 2>/dev/null; then
         :
     else
-        home-manager switch --flake .#$USER
+        home-manager switch -b backup --flake .#$USER
     fi
 else
     echo ""
     echo "Executing Home Manager Switch..."
-    if home-manager switch --flake ".#$CURRENT_USER" 2>/dev/null; then
+    if home-manager switch -b backup --flake ".#$CURRENT_USER" 2>/dev/null; then
         :
     else
-        home-manager switch --flake .#$USER
+        home-manager switch -b backup --flake .#$USER
     fi
 fi
 
