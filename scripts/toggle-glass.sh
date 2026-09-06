@@ -18,10 +18,10 @@ fi
 
 echo "Switching to $NEW_STATE glass mode..."
 
-# 1. Update Symlinks
-ln -sf "$NIXOS_DIR/waybar/style-${NEW_STATE}.css" "$NIXOS_DIR/waybar/style.css"
-ln -sf "$NIXOS_DIR/wlogout/style-${NEW_STATE}.css" "$NIXOS_DIR/wlogout/style.css"
-ln -sf "$NIXOS_DIR/rofi/themes/crystal-ui-${NEW_STATE}.rasi" "$NIXOS_DIR/rofi/themes/crystal-ui.rasi"
+# 1. Update Symlinks (relative targets for portability across machines)
+ln -sf "style-${NEW_STATE}.css" "$NIXOS_DIR/waybar/style.css"
+ln -sf "style-${NEW_STATE}.css" "$NIXOS_DIR/wlogout/style.css"
+ln -sf "crystal-ui-${NEW_STATE}.rasi" "$NIXOS_DIR/rofi/themes/crystal-ui.rasi"
 
 # 2. Update Hyprland Blur Settings dynamically
 if [ "$NEW_STATE" = "light" ]; then

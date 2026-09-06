@@ -78,7 +78,6 @@
   },
 
   "backlight": {
-    "device": "intel_backlight",
     "format": "{icon} {percent}%",
     "format-icons": ["󰃞", "󰃟", "󰃠"],
     "on-scroll-up": "brightnessctl set 1%+",
@@ -96,7 +95,6 @@
   },
 
   "network": {
-    "interface": "wlp*",
     "format-wifi": "󰤨",
     "format-ethernet": "󰈀",
     "format-linked": "󰈀 (No IP)",

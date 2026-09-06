@@ -3,6 +3,20 @@
    Authentic specular highlights · vibrancy · multi-layer blur · pill capsules
    ============================================================================= */
 
+/* ── Base Palette Defaults (Ensures bar styling never breaks on any machine) ── */
+@define-color fire_gold       #c88210;
+@define-color fire_amber      #a65c1b;
+@define-color ember_orange    #b84000;
+@define-color ice_blue        #2b6cb0;
+@define-color smoke_grey      #5a6578;
+@define-color ash_dark        rgba(255, 255, 255, 0.90);
+@define-color ash_medium      rgba(240, 243, 248, 0.85);
+@define-color glass_surface   rgba(255, 255, 255, 0.40);
+@define-color glass_specular  rgba(255, 255, 255, 0.80);
+@define-color glass_border    rgba(0, 0, 0, 0.12);
+@define-color text_bright     #1a202c;
+@define-color text_muted      rgba(26, 32, 44, 0.65);
+
 /* ── Dynamic Palette from Stylix ─────────────────────────────────────────── */
 @import "../dynamic-colors/waybar.css";
 
