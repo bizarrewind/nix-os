@@ -1,6 +1,3 @@
-# ── Personal credentials (git name, email) ──────────────────────────────────
-private.nix
-
 # ── Runtime artifacts ─────────────────────────────────────────────────────────
 *.log
 *.bak

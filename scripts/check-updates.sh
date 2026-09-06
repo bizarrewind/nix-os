@@ -8,15 +8,25 @@ DOTFILES_DIR="${DOTFILES_DIR:-$HOME/.dotfiles/nixos}"
 SETTINGS_FILE="$HOME/.config/nixos-auto-update.json"
 CACHE_FILE="$HOME/.cache/nixos-last-update-check"
 
-# Check if auto-update setting is enabled
-if [ -f "$SETTINGS_FILE" ]; then
-    ENABLED=$(grep -o '"enabled":\s*true' "$SETTINGS_FILE" || true)
-    if [ -z "$ENABLED" ]; then
-        exit 0
-    fi
-else
-    # Default to enabled if not set
-    echo '{"enabled": true}' > "$SETTINGS_FILE"
+# Check if auto-update setting is enabled (strictly opt-in)
+if [ ! -f "$SETTINGS_FILE" ]; then
+    exit 0
+fi
+
+ENABLED=$(grep -o '"enabled":\s*true' "$SETTINGS_FILE" || true)
+if [ -z "$ENABLED" ]; then
+    exit 0
+fi
+
+# Ensure git is available and dotfiles is a git repository with a configured remote
+cd "$DOTFILES_DIR" || exit 0
+if ! command -v git >/dev/null 2>&1 || [ ! -d ".git" ]; then
+    exit 0
+fi
+
+REMOTE_NAME=$(git remote | head -n 1)
+if [ -z "$REMOTE_NAME" ]; then
+    exit 0
 fi
 
 # Optional argument: --rate-limit <minutes> (e.g. for terminal startup checks)
@@ -34,18 +44,16 @@ if [ "$1" = "--rate-limit" ]; then
     echo "$NOW" > "$CACHE_FILE"
 fi
 
-# Check network connectivity quickly (timeout 2s)
-if ! curl -s --max-time 2 --head https://github.com >/dev/null 2>&1; then
-    exit 0
+# Fetch updates silently from configured remote (timeout 3s)
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "main")
+if [ "$CURRENT_BRANCH" = "HEAD" ]; then
+    CURRENT_BRANCH="main"
 fi
 
-cd "$DOTFILES_DIR" || exit 0
-
-# Fetch updates silently
-git fetch origin main --quiet 2>/dev/null || exit 0
+timeout 3 git fetch "$REMOTE_NAME" "$CURRENT_BRANCH" --quiet 2>/dev/null || exit 0
 
 LOCAL_COMMIT=$(git rev-parse HEAD 2>/dev/null || echo "")
-REMOTE_COMMIT=$(git rev-parse origin/main 2>/dev/null || echo "")
+REMOTE_COMMIT=$(git rev-parse "${REMOTE_NAME}/${CURRENT_BRANCH}" 2>/dev/null || echo "")
 
 if [ -z "$LOCAL_COMMIT" ] || [ -z "$REMOTE_COMMIT" ] || [ "$LOCAL_COMMIT" = "$REMOTE_COMMIT" ]; then
     exit 0
