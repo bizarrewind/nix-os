@@ -77,13 +77,16 @@ echo ""
 
 read -p "Ready to build and activate this configuration now? [Y/n]: " RUN_BUILD
 if [[ ! "$RUN_BUILD" =~ ^[Nn]$ ]]; then
+    # Ensure local updates are visible to Nix flake
+    git add hardware-configuration.nix user-config.nix 2>/dev/null || true
+
     echo ""
     echo "Running NixOS Rebuild..."
     sudo nixos-rebuild switch --flake .#nixos
     
     echo ""
     echo "Running Home Manager Switch..."
-    home-manager switch --flake ".#$CHOSEN_USER" || home-manager switch --flake .#vexil
+    home-manager switch --flake ".#$CHOSEN_USER" || home-manager switch --flake ".#$USER"
     
     echo ""
     echo "======================================================"
