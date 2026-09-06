@@ -20,5 +20,8 @@ hl.on("hyprland.start",function()
 
     -- Check for repository updates in the background
     hl.exec_cmd("~/.dotfiles/nixos/scripts/check-updates.sh &")
+
+    -- Battery warning & auto-suspend daemon
+    hl.exec_cmd("~/.dotfiles/nixos/scripts/battery-monitor.sh &")
 end)
 

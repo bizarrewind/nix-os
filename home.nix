@@ -496,5 +496,22 @@ in
     firefox.profileNames = [ "default" ];
   };
 
+  # Background battery monitor service
+  systemd.user.services.battery-monitor = {
+    Unit = {
+      Description = "Low battery notification and auto-suspend daemon";
+      PartOf = [ "graphical-session.target" ];
+      After = [ "graphical-session.target" ];
+    };
+    Service = {
+      ExecStart = "${pkgs.bash}/bin/bash %h/.dotfiles/nixos/scripts/battery-monitor.sh";
+      Restart = "always";
+      RestartSec = 5;
+    };
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
+  };
+
   programs.home-manager.enable = true;
 }

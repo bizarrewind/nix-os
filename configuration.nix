@@ -12,7 +12,16 @@
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.sddm.enableGnomeKeyring = true;
 
- services.logind.settings.Login.HandlePowerKey = "lock"; 
+  services.logind.settings.Login.HandlePowerKey = "lock"; 
+
+  # Power Management & Low Battery Protection
+  services.upower = {
+    enable = true;
+    criticalPowerAction = "Hibernate";
+    percentageLow = 20;
+    percentageCritical = 10;
+    percentageAction = 4;
+  }; 
 
   virtualisation.docker.enable = true;
   programs.nix-ld.enable = true;
