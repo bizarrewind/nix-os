@@ -10,7 +10,7 @@ local browser = "firefox"
 ---------------------
 ---- KEYBINDINGS ----
 ---------------------
--- Core Applications
+-- Core Applications & Launchers
 hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + Q",      hl.dsp.window.close())
 hl.bind(mainMod .. " + SPACE",  hl.dsp.exec_cmd(menu))
@@ -18,13 +18,20 @@ hl.bind(mainMod .. " + E",      hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + B",      hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + O",      hl.dsp.exec_cmd("orbit toggle top-right"))
 
+-- Quick Shell Utilities (Clipboard, Notifications, Power, Windows)
+hl.bind(mainMod .. " + V",       hl.dsp.exec_cmd("~/.dotfiles/nixos/scripts/clipboard.sh"))
+hl.bind(mainMod .. " + N",       hl.dsp.exec_cmd("swaync-client -t -sw"))
+hl.bind(mainMod .. " + ESCAPE",  hl.dsp.exec_cmd("wlogout -b 4 -c 0 -r 0"))
+hl.bind("ALT + TAB",             hl.dsp.exec_cmd("rofi -show window"))
+
 -- Window States
-hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + M", hl.dsp.window.fullscreen(1)) -- Maximize / expand (retaining bar & gaps)
-hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())  -- True fullscreen
-hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen(1))
-hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
-hl.bind(mainMod .. " + T", hl.dsp.layout("togglesplit"))    
+hl.bind(mainMod .. " + SHIFT + V",     hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mainMod .. " + SHIFT + SPACE", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mainMod .. " + M",             hl.dsp.window.fullscreen(1)) -- Maximize / expand (retaining bar & gaps)
+hl.bind(mainMod .. " + F",             hl.dsp.window.fullscreen())  -- True fullscreen
+hl.bind(mainMod .. " + SHIFT + F",     hl.dsp.window.fullscreen(1))
+hl.bind(mainMod .. " + P",             hl.dsp.window.pseudo())
+hl.bind(mainMod .. " + T",             hl.dsp.layout("togglesplit"))    
 
 -- System & Screen Lock
 hl.bind(mainMod .. " + DELETE", hl.dsp.exec_cmd("hyprlock"))

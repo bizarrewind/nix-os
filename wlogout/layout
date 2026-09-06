@@ -6,7 +6,7 @@
 }
 {
     "label" : "logout",
-    "action" : "pkill -u vexil",
+    "action" : "hyprctl dispatch exit",
     "text" : "Log Out",
     "keybind" : "e"
 }
