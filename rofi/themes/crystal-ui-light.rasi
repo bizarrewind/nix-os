@@ -3,7 +3,7 @@
    Palette: fire-gold, fire-amber, ember-orange, ice-blue, smoke-grey
    ============================================================================= */
 
-@import "../dynamic-colors/rofi.rasi"
+@import "~/.config/dynamic-colors/rofi.rasi"
 
 /* ── Color tokens ──────────────────────────────────────────────────────────── */
 * {

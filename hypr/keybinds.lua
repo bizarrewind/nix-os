@@ -18,12 +18,13 @@ hl.bind(mainMod .. " + E",      hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + B",      hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + O",      hl.dsp.exec_cmd("orbit toggle top-right"))
 
--- Quick Shell Utilities (Clipboard, Notifications, Power, Windows)
+-- Quick Shell Utilities (Clipboard, Notifications, Power, Windows, Cheatsheet)
 hl.bind(mainMod .. " + C",          hl.dsp.exec_cmd(os.getenv("HOME") .. "/.dotfiles/nixos/scripts/clipboard.sh"))
 hl.bind(mainMod .. " + SHIFT + V",  hl.dsp.exec_cmd(os.getenv("HOME") .. "/.dotfiles/nixos/scripts/clipboard.sh"))
 hl.bind(mainMod .. " + N",          hl.dsp.exec_cmd("swaync-client -t -sw"))
 hl.bind(mainMod .. " + escape",     hl.dsp.exec_cmd("wlogout -b 4 -c 0 -r 0"))
 hl.bind("ALT + Tab",                hl.dsp.exec_cmd("rofi -show window"))
+hl.bind(mainMod .. " + slash",      hl.dsp.exec_cmd(os.getenv("HOME") .. "/.dotfiles/nixos/scripts/keybinds-helper.sh"))
 
 -- Window States
 hl.bind(mainMod .. " + V",             hl.dsp.window.float({ action = "toggle" }))
@@ -72,15 +73,15 @@ hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("hyprshot -m region"))
 
 
 -- ==========================================
--- HARDWARE MEDIA KEYS
+-- HARDWARE MEDIA KEYS (With Visual OSD)
 -- ==========================================
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),      { locked = true, repeating = true })
-hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),     { locked = true, repeating = true })
-hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),   { locked = true, repeating = true })
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(os.getenv("HOME") .. "/.dotfiles/nixos/scripts/volume.sh up"),   { locked = true, repeating = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(os.getenv("HOME") .. "/.dotfiles/nixos/scripts/volume.sh down"), { locked = true, repeating = true })
+hl.bind("XF86AudioMute",        hl.dsp.exec_cmd(os.getenv("HOME") .. "/.dotfiles/nixos/scripts/volume.sh mute"), { locked = true, repeating = true })
+hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),                  { locked = true, repeating = true })
 
-hl.bind("XF86MonBrightnessUp",  hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"),                  { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"),                  { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessUp",  hl.dsp.exec_cmd(os.getenv("HOME") .. "/.dotfiles/nixos/scripts/brightness.sh up"),   { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd(os.getenv("HOME") .. "/.dotfiles/nixos/scripts/brightness.sh down"), { locked = true, repeating = true })
 
 hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("playerctl next"),       { locked = true })
 hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
