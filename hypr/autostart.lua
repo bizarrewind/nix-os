@@ -17,5 +17,8 @@ hl.on("hyprland.start",function()
     
     -- Start the gnome-keyring secret service daemon
     hl.exec_cmd("gnome-keyring-daemon --start --components=secrets,ssh,pkcs11")
+
+    -- Check for repository updates in the background
+    hl.exec_cmd("~/.dotfiles/nixos/scripts/check-updates.sh &")
 end)
 

@@ -155,6 +155,13 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
             with open(css_path, 'w') as f:
                 f.write(f":root {{ --wb-radius: {data['waybar_radius']}px; }}\n")
             subprocess.run(['pkill', '-SIGUSR2', 'waybar'])
+
+        if 'auto_update' in data:
+            config_file = os.path.expanduser("~/.config/nixos-auto-update.json")
+            try:
+                write_json(config_file, {"enabled": bool(data['auto_update'])})
+            except Exception as e:
+                print("Error saving auto-update config:", e)
             
         self.send_response(200)
         self.send_header('Content-type', 'application/json')
@@ -219,6 +226,13 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
                 f.write(content)
         except Exception as e:
             print("Error saving stylix.nix:", e)
+
+        if 'auto_update' in data:
+            config_file = os.path.expanduser("~/.config/nixos-auto-update.json")
+            try:
+                write_json(config_file, {"enabled": bool(data['auto_update'])})
+            except Exception as e:
+                print("Error saving auto-update config:", e)
         
         # 3. Trigger rebuild
         rebuild_cmd = f'cd {DOTFILES}; echo "Applying global themes and colors via NixOS Rebuild..."; sudo nixos-rebuild switch; echo ""; echo "Rebuild complete (if there are errors, they will be listed above)."; read -p "Press ENTER to close window..."'
@@ -245,6 +259,15 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
             color_preset = "auto"
             waybar_modules = []
             waybar_radius = 12
+            auto_update = True
+
+            config_file = os.path.expanduser("~/.config/nixos-auto-update.json")
+            try:
+                if os.path.exists(config_file):
+                    with open(config_file, 'r') as f:
+                        cfg = json.load(f)
+                        auto_update = cfg.get("enabled", True)
+            except: pass
 
             try:
                 with open(os.path.join(DOTFILES, 'hypr', 'hyprland.lua'), 'r') as f:
@@ -299,7 +322,8 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
                 "animations": animations_enabled,
                 "color_preset": color_preset,
                 "waybar_modules": waybar_modules,
-                "waybar_radius": waybar_radius
+                "waybar_radius": waybar_radius,
+                "auto_update": auto_update
             }
 
             self.send_response(200)

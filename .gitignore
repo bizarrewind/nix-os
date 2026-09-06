@@ -1,3 +1,4 @@
 private.nix
-
 *.bak
+__pycache__/
+*.pyc

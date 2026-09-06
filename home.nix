@@ -135,10 +135,16 @@ in
 
       home-switch = "home-manager switch --flake /home/vexil/.dotfiles/nixos#vexil";
       nix-switch = "sudo nixos-rebuild switch --flake /home/vexil/.dotfiles/nixos#nixos && home-manager switch --flake /home/vexil/.dotfiles/nixos#vexil";
+      dotfiles-update = "/home/vexil/.dotfiles/nixos/scripts/upgrade.sh";
     };
 
     # Dynamic wallpaper palette for ZSH & Eza
     initExtra = ''
+      # ── Check for repository updates (rate-limited to at most once every 30 mins) ──
+      if [[ -o interactive ]] && [ -x "$HOME/.dotfiles/nixos/scripts/check-updates.sh" ]; then
+        "$HOME/.dotfiles/nixos/scripts/check-updates.sh" --rate-limit 30 &!
+      fi
+
       # ── eza colors (dynamic Stylix palette) ─────────────────────────────
       # di=dir(${c.base0A}), ln=symlink(${c.base0D}), ex=exec(${c.base08})
       export EZA_COLORS="di=38;2;${toString rgb.base0A-rgb-r};${toString rgb.base0A-rgb-g};${toString rgb.base0A-rgb-b}:ln=38;2;${toString rgb.base0D-rgb-r};${toString rgb.base0D-rgb-g};${toString rgb.base0D-rgb-b}:ex=38;2;${toString rgb.base08-rgb-r};${toString rgb.base08-rgb-g};${toString rgb.base08-rgb-b}:fi=0:*.tar=38;2;${toString rgb.base04-rgb-r};${toString rgb.base04-rgb-g};${toString rgb.base04-rgb-b}:*.gz=38;2;${toString rgb.base04-rgb-r};${toString rgb.base04-rgb-g};${toString rgb.base04-rgb-b}:*.zip=38;2;${toString rgb.base04-rgb-r};${toString rgb.base04-rgb-g};${toString rgb.base04-rgb-b}:*.nix=38;2;${toString rgb.base0D-rgb-r};${toString rgb.base0D-rgb-g};${toString rgb.base0D-rgb-b}:*.lua=38;2;${toString rgb.base0D-rgb-r};${toString rgb.base0D-rgb-g};${toString rgb.base0D-rgb-b}:*.py=38;2;${toString rgb.base0A-rgb-r};${toString rgb.base0A-rgb-g};${toString rgb.base0A-rgb-b}:*.rs=38;2;${toString rgb.base08-rgb-r};${toString rgb.base08-rgb-g};${toString rgb.base08-rgb-b}:*.js=38;2;${toString rgb.base0A-rgb-r};${toString rgb.base0A-rgb-g};${toString rgb.base0A-rgb-b}:*.ts=38;2;${toString rgb.base0D-rgb-r};${toString rgb.base0D-rgb-g};${toString rgb.base0D-rgb-b}:*.md=38;2;${toString rgb.base09-rgb-r};${toString rgb.base09-rgb-g};${toString rgb.base09-rgb-b}:da=38;2;${toString rgb.base04-rgb-r};${toString rgb.base04-rgb-g};${toString rgb.base04-rgb-b}:sn=38;2;${toString rgb.base04-rgb-r};${toString rgb.base04-rgb-g};${toString rgb.base04-rgb-b}"

@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const elInactiveOpacity = document.getElementById('inactive-opacity');
     const toggleBlur = document.getElementById('toggle-blur');
     const toggleAnimations = document.getElementById('toggle-animations');
+    const toggleAutoupdate = document.getElementById('toggle-autoupdate');
     const waybarModules = document.getElementById('waybar-modules');
     const grid = document.getElementById('wallpaper-grid');
     const btnSave = document.getElementById('btn-save');
@@ -145,6 +146,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             
             toggleBlur.checked = data.blur;
             toggleAnimations.checked = data.animations;
+            if (toggleAutoupdate) {
+                toggleAutoupdate.checked = data.auto_update !== undefined ? data.auto_update : true;
+            }
             
             if (data.color_preset) selectedTheme = data.color_preset;
 
@@ -214,6 +218,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         sendUpdate({ animations: currentConfig.animations });
     });
 
+    if (toggleAutoupdate) {
+        toggleAutoupdate.addEventListener('change', (e) => {
+            currentConfig.auto_update = e.target.checked;
+            sendUpdate({ auto_update: currentConfig.auto_update });
+        });
+    }
+
     btnUpload.addEventListener('click', () => fileUpload.click());
     fileUpload.addEventListener('change', (e) => {
         const file = e.target.files[0];
@@ -253,6 +264,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     inactive_opacity: currentConfig.inactive_opacity,
                     blur: currentConfig.blur,
                     animations: currentConfig.animations,
+                    auto_update: toggleAutoupdate ? toggleAutoupdate.checked : true,
                     wallpaper: selectedWallpaper,
                     color_preset: selectedTheme,
                     custom_palette: customPalette
