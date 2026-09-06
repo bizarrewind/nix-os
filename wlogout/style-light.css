@@ -3,7 +3,7 @@
    Centered 4-button modal with crisp modern SVG icons & liquid glass
    ============================================================================= */
 
-@import "/home/vexil/.config/dynamic-colors/wlogout.css";
+@import "../dynamic-colors/wlogout.css";
 
 /* ── Screen dim overlay ────────────────────────────────────────────────────── */
 window {
@@ -58,7 +58,7 @@ button:focus {
 
 /* ── Individual Button Icons & Accents ─────────────────────────────────────── */
 #lock {
-    background-image: image(url("/home/vexil/.config/wlogout/icons/lock.svg"), url("icons/lock.svg"));
+    background-image: image(url("icons/lock.svg"), url("icons/lock.svg"));
 }
 
 #lock:hover {
@@ -70,7 +70,7 @@ button:focus {
 }
 
 #logout {
-    background-image: image(url("/home/vexil/.config/wlogout/icons/logout.svg"), url("icons/logout.svg"));
+    background-image: image(url("icons/logout.svg"), url("icons/logout.svg"));
 }
 
 #logout:hover {
@@ -82,7 +82,7 @@ button:focus {
 }
 
 #reboot {
-    background-image: image(url("/home/vexil/.config/wlogout/icons/reboot.svg"), url("icons/reboot.svg"));
+    background-image: image(url("icons/reboot.svg"), url("icons/reboot.svg"));
 }
 
 #reboot:hover {
@@ -94,7 +94,7 @@ button:focus {
 }
 
 #shutdown {
-    background-image: image(url("/home/vexil/.config/wlogout/icons/shutdown.svg"), url("icons/shutdown.svg"));
+    background-image: image(url("icons/shutdown.svg"), url("icons/shutdown.svg"));
 }
 
 #shutdown:hover {

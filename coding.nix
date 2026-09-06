@@ -3,7 +3,8 @@
 	environment.systemPackages = with pkgs;[
 
 	jupyter
-    	antigravity-ide
+    # Optional: remove if you don't use Antigravity IDE
+    antigravity-ide
 
 	gcc
 	gnumake

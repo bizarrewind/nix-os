@@ -1,49 +1,199 @@
-# Crystal UI Dotfiles
+<div align="center">
 
-A premium, highly-customized NixOS dotfiles repository built with Hyprland, Waybar, and a unified glassmorphic aesthetic ("Crystal UI"). 
+# ❄️ Crystal UI — NixOS Dotfiles
 
-## Features
+**A premium, glassmorphic NixOS desktop built on Hyprland.**  
+Stylix-powered dynamic theming · Waybar · Neovim · Rofi · SwayNC · wlogout
 
-- **Hyprland**: Smooth animations, custom window rules (like floating Picture-in-Picture), and a finely-tuned master layout.
-- **Waybar**: A highly responsive, modular top-bar styled with translucent effects.
-- **Global Stylix Integration**: Dynamic wallpaper-based theming automatically applied to Neovim (via base16), Firefox (via userChrome), VS Code, Rofi, and SwayNC.
-- **Neovim**: Lazy.nvim configured with Telescope, Treesitter, and dynamic Stylix palette support.
-- **Unified Geometry**: A synchronized `12px` border-radius applied across every single UI component for a perfectly consistent, premium feel.
-- **Custom Orbit Menu**: A custom-built rust/GTK based overlay menu for bluetooth and wifi.
+[![NixOS](https://img.shields.io/badge/NixOS-unstable-blue?logo=nixos)](https://nixos.org)
+[![Hyprland](https://img.shields.io/badge/Hyprland-latest-purple?logo=linux)](https://hyprland.org)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 
-## Gallery
+</div>
 
-*(Insert screenshots here!)*
+---
 
-| Desktop | Applications |
-|---------|--------------|
-| ![Desktop Placeholder]() | ![Apps Placeholder]() |
+## ✨ Features
 
-## Directory Structure
+| Feature | Details |
+|---------|---------|
+| 🖥️ **Hyprland** | Smooth animations, floating PiP rules, master layout |
+| 🎨 **Stylix** | Wallpaper-derived palette applied to every app automatically |
+| 📊 **Waybar** | Translucent pill capsules, dynamic Stylix color CSS |
+| 📝 **Neovim** | Lazy.nvim + Telescope + Treesitter + live palette sync |
+| 🔔 **SwayNC** | Glassmorphic notification center |
+| 🚀 **Orbit Menu** | Custom Rust/GTK Bluetooth & Wi-Fi overlay |
+| 🔋 **Battery Guard** | Multi-stage low battery alerts + auto-suspend |
+| 🔄 **Auto-updates** | Optional remote push notifications when you commit |
+| ⌨️ **keyd** | Keyboard remapping (togglable, off by default) |
+| 📐 **Unified Geometry** | 12px border-radius synced across every UI component |
 
-- `/hypr` - Hyprland window manager configurations, layer rules, and animations. [Read more](./hypr/README.md)
-- `/waybar` - Waybar modules and CSS styling. [Read more](./waybar/README.md)
-- `/nvim` - Neovim lua configuration using lazy.nvim. [Read more](./nvim/README.md)
-- `/eww` - Eww widgets (e.g. Volume Control).
-- `/rofi` - Application launcher themes.
-- `/swaync` - Notification center styling.
-- `home.nix` & `configuration.nix` - The core NixOS system declarations.
+---
 
-## Installation
+## 📸 Gallery
 
-```bash
-# Clone the repository
-git clone <your-repo-url> ~/.dotfiles/nixos
+> Screenshots coming soon — replace this section with your own!
 
-# Apply system changes
-sudo nixos-rebuild switch --flake ~/.dotfiles/nixos#nixos
+---
 
-# Apply user environment (Home Manager)
-home-manager switch --flake ~/.dotfiles/nixos#$USER
+## 📂 Directory Structure
+
+```
+.
+├── configuration.nix        # NixOS system configuration
+├── home.nix                 # Home Manager user environment
+├── flake.nix                # Nix flake (inputs + outputs)
+├── stylix.nix               # Global theme settings
+├── pkgs.nix                 # System-wide packages
+├── coding.nix               # Dev tools (optional packages)
+├── user-config.example.nix  # Template for your user-config.nix
+├── setup.sh                 # 🚀 Interactive first-time setup
+├── replace_radius.py        # Sync border-radius across all components
+├── hypr/                    # Hyprland config (Lua-based)
+├── waybar/                  # Waybar modules & CSS
+├── nvim/                    # Neovim (Lua, lazy.nvim)
+├── rofi/                    # App launcher themes
+├── swaync/                  # Notification center
+├── wlogout/                 # Power menu
+├── eww/                     # Eww widgets (volume)
+├── wallpapers/              # Wallpapers (Stylix reads these)
+└── scripts/                 # Upgrade, battery monitor, control center
 ```
 
-## Maintenance
+---
 
-This repository utilizes Home Manager and Flakes to manage the state. If you edit anything outside of `/home/$USER/.dotfiles/nixos/`, the changes will be overwritten on the next rebuild. 
+## 🚀 Getting Started
 
-When adding new packages, add them to `home.nix` (for user-specific tools) or `pkgs.nix` (for system-wide utilities).
+### Prerequisites
+
+- A fresh NixOS install (flakes enabled)
+- Git
+
+### Installation
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/YOUR_USERNAME/YOUR_REPO ~/.dotfiles/nixos
+cd ~/.dotfiles/nixos
+
+# 2. Run the interactive setup assistant
+#    This will:
+#      - Ask for your username
+#      - Copy your machine's hardware-configuration.nix
+#      - Create user-config.nix
+#      - Optionally apply the config immediately
+bash setup.sh
+```
+
+> [!IMPORTANT]
+> **Do not skip `setup.sh`.** NixOS requires a `hardware-configuration.nix` that matches
+> your machine's disks and UUIDs. The one in this repo is intentionally excluded from git.
+> Running `setup.sh` copies the correct one from `/etc/nixos/`.
+
+### Manual Setup (if you prefer)
+
+```bash
+# Copy your machine's hardware config
+cp /etc/nixos/hardware-configuration.nix ~/.dotfiles/nixos/
+
+# Create your user config
+cp user-config.example.nix user-config.nix
+# Edit user-config.nix and set your username
+
+# Apply system configuration
+sudo nixos-rebuild switch --flake .#nixos
+
+# Apply user environment
+home-manager switch --flake .#$USER
+```
+
+---
+
+## 🎨 Theming
+
+Everything is driven by **Stylix**. To change the color palette:
+
+1. **Change your wallpaper** — Stylix auto-extracts a palette from any image.
+   - Replace `wallpapers/default.jpg` with your image.
+2. **Use a preset scheme** — Edit `stylix.nix` and set `colorPreset`:
+   ```nix
+   colorPreset = "tokyo-night-dark"; # or dracula, nord, catppuccin-mocha …
+   ```
+3. **Rebuild:**
+   ```bash
+   home-manager switch --flake .#$USER
+   ```
+
+### Sync Border Radius
+
+To change the `12px` border radius across every component:
+
+```bash
+python replace_radius.py 16   # set to 16px
+```
+
+---
+
+## 🔄 Updates
+
+This repo ships a smart upgrade script and optional auto-notification system.
+
+```bash
+dotfiles-update        # pull + smart rebuild (system or home-manager only)
+```
+
+The shell alias `dotfiles-update` is available after applying the config.
+
+If you want to be notified when the upstream repo has updates, enable
+**Remote Update Notifications** in the Web Control Center:
+
+```bash
+bash scripts/control-center/run.sh
+```
+
+---
+
+## ⌨️ Key Bindings
+
+| Shortcut | Action |
+|----------|--------|
+| `Super + Return` | Open terminal (Kitty) |
+| `Super + D` | App launcher (Rofi) |
+| `Super + M` | Maximize window |
+| `Super + Q` | Close window |
+| `Super + F` | Fullscreen |
+| `Super + [1-9]` | Switch workspace |
+| `Super + Shift + [1-9]` | Move window to workspace |
+
+---
+
+## 🗂️ Files Excluded from Git
+
+The following files are machine-specific and **intentionally not committed**:
+
+| File | Reason |
+|------|--------|
+| `hardware-configuration.nix` | Contains disk UUIDs unique to your machine |
+| `user-config.nix` | Contains your username — use `user-config.example.nix` as a template |
+| `private.nix` | Git name/email credentials |
+| `*.log` | Runtime output |
+
+---
+
+## 📋 Requirements
+
+- NixOS (unstable channel)
+- Nix Flakes enabled (`experimental-features = nix-command flakes` in `/etc/nix/nix.conf`)
+- Home Manager (installed by `setup.sh` or manually)
+
+---
+
+## 🤝 Contributing
+
+Feel free to open issues or PRs. If you use this config as a base, a star ⭐ is appreciated!
+
+---
+
+<div align="center">
+<sub>Built with ❄️ NixOS, ♥ and too many late nights.</sub>
+</div>

@@ -3,8 +3,8 @@
 let
   userConfig = if builtins.pathExists ./user-config.nix
     then import ./user-config.nix
-    else { username = "vexil"; enableKeyd = false; };
-  currentUsername = userConfig.username or "vexil";
+    else { username = "nixosuser"; enableKeyd = false; };
+  currentUsername = userConfig.username or "nixosuser";
   enableKeyd = userConfig.enableKeyd or false;
 in
 {

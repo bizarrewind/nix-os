@@ -3,8 +3,8 @@
 let
   userConfig = if builtins.pathExists ./user-config.nix
     then import ./user-config.nix
-    else { username = "vexil"; };
-  currentUsername = userConfig.username or "vexil";
+    else { username = "nixosuser"; };
+  currentUsername = userConfig.username or "nixosuser";
   c = config.lib.stylix.colors.withHashtag;
   rgb = config.lib.stylix.colors;
   orbit = pkgs.callPackage ./pkgs/orbit.nix {};
@@ -137,9 +137,9 @@ in
       ".." = "cd ..";
       "..." = "cd ../..";
 
-      home-switch = "home-manager switch --flake /home/vexil/.dotfiles/nixos#vexil";
-      nix-switch = "sudo nixos-rebuild switch --flake /home/vexil/.dotfiles/nixos#nixos && home-manager switch --flake /home/vexil/.dotfiles/nixos#vexil";
-      dotfiles-update = "/home/vexil/.dotfiles/nixos/scripts/upgrade.sh";
+      home-switch = "home-manager switch --flake $HOME/.dotfiles/nixos#$USER";
+      nix-switch = "sudo nixos-rebuild switch --flake $HOME/.dotfiles/nixos#nixos && home-manager switch --flake $HOME/.dotfiles/nixos#$USER";
+      dotfiles-update = "$HOME/.dotfiles/nixos/scripts/upgrade.sh";
     };
 
     # Dynamic wallpaper palette for ZSH & Eza

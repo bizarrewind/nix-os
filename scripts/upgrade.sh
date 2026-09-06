@@ -95,7 +95,7 @@ if [ "$NEEDS_SYSTEM_REBUILD" = true ]; then
     if home-manager switch --flake ".#$CURRENT_USER" 2>/dev/null; then
         :
     else
-        home-manager switch --flake .#vexil
+        home-manager switch --flake .#$USER
     fi
 else
     echo ""
@@ -103,7 +103,7 @@ else
     if home-manager switch --flake ".#$CURRENT_USER" 2>/dev/null; then
         :
     else
-        home-manager switch --flake .#vexil
+        home-manager switch --flake .#$USER
     fi
 fi
 

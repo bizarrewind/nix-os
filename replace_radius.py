@@ -1,40 +1,55 @@
+"""
+replace_radius.py — Synchronize border-radius across all Crystal UI components.
+
+Usage:
+    python replace_radius.py [RADIUS]
+
+    RADIUS defaults to 12 (pixels). Change it here or pass as a CLI argument.
+
+This script is safe to run from any working directory; all paths are resolved
+relative to the directory this file lives in (the dotfiles root).
+"""
+
 import re
-import glob
+import sys
+from pathlib import Path
 
-radius = "12"
+ROOT = Path(__file__).parent.resolve()
 
-files = [
-    "/home/vexil/.dotfiles/nixos/wlogout/style-dark.css",
-    "/home/vexil/.dotfiles/nixos/wlogout/style-light.css",
-    "/home/vexil/.dotfiles/nixos/eww/eww.scss",
-    "/home/vexil/.dotfiles/nixos/waybar/style-dark.css",
-    "/home/vexil/.dotfiles/nixos/home.nix",
-    "/home/vexil/.dotfiles/nixos/waybar/style-light.css",
-    "/home/vexil/.dotfiles/nixos/swaync/style.css",
-    "/home/vexil/.dotfiles/nixos/rofi/themes/liquid-glass-light.rasi",
-    "/home/vexil/.dotfiles/nixos/rofi/themes/liquid-glass-dark.rasi",
+radius = sys.argv[1] if len(sys.argv) > 1 else "12"
+
+css_files = [
+    ROOT / "wlogout" / "style-dark.css",
+    ROOT / "wlogout" / "style-light.css",
+    ROOT / "eww" / "eww.scss",
+    ROOT / "waybar" / "style-dark.css",
+    ROOT / "waybar" / "style-light.css",
+    ROOT / "waybar" / "style.css",
+    ROOT / "swaync" / "style.css",
+    ROOT / "rofi" / "themes" / "crystal-ui-dark.rasi",
+    ROOT / "rofi" / "themes" / "crystal-ui-light.rasi",
+    ROOT / "rofi" / "themes" / "crystal-ui.rasi",
 ]
 
-for fpath in files:
-    with open(fpath, "r") as f:
-        lines = f.readlines()
-    
-    with open(fpath, "w") as f:
-        for line in lines:
-            if "border-radius:" in line:
-                # Replace any number before 'px' with our new radius
-                new_line = re.sub(r'\b\d+px\b', f'{radius}px', line)
-                f.write(new_line)
-            else:
-                f.write(line)
+for fpath in css_files:
+    if not fpath.exists():
+        print(f"  skip (not found): {fpath.name}")
+        continue
+    text = fpath.read_text()
+    new_text = re.sub(
+        r'(?<=border-radius:\s)(\d+)(?=px)',
+        radius,
+        text,
+    )
+    fpath.write_text(new_text)
+    print(f"  updated: {fpath.name}")
 
-# Handle hyprland.lua rounding
-with open("/home/vexil/.dotfiles/nixos/hypr/hyprland.lua", "r") as f:
-    hl_lines = f.readlines()
-with open("/home/vexil/.dotfiles/nixos/hypr/hyprland.lua", "w") as f:
-    for line in hl_lines:
-        if re.search(r'^\s*rounding\s*=\s*\d+', line):
-            line = re.sub(r'rounding\s*=\s*\d+', f'rounding = {radius}', line)
-        f.write(line)
+# Handle hyprland.lua rounding value
+hl_path = ROOT / "hypr" / "hyprland.lua"
+if hl_path.exists():
+    text = hl_path.read_text()
+    new_text = re.sub(r'(rounding\s*=\s*)\d+', rf'\g<1>{radius}', text)
+    hl_path.write_text(new_text)
+    print(f"  updated: hyprland.lua (rounding = {radius})")
 
-print("Done")
+print(f"\nDone — border-radius set to {radius}px across all Crystal UI files.")
