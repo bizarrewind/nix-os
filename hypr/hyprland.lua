@@ -18,6 +18,7 @@ hl.monitor({
 
 -- Autostart necessary processes (like notifications daemons, status bars, etc.)
 
+package.loaded["keybinds"] = nil
 require("keybinds")
 require("autostart")
 -------------------------------

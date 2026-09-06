@@ -19,13 +19,14 @@ hl.bind(mainMod .. " + B",      hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + O",      hl.dsp.exec_cmd("orbit toggle top-right"))
 
 -- Quick Shell Utilities (Clipboard, Notifications, Power, Windows)
-hl.bind(mainMod .. " + V",       hl.dsp.exec_cmd("~/.dotfiles/nixos/scripts/clipboard.sh"))
-hl.bind(mainMod .. " + N",       hl.dsp.exec_cmd("swaync-client -t -sw"))
-hl.bind(mainMod .. " + ESCAPE",  hl.dsp.exec_cmd("wlogout -b 4 -c 0 -r 0"))
-hl.bind("ALT + TAB",             hl.dsp.exec_cmd("rofi -show window"))
+hl.bind(mainMod .. " + C",          hl.dsp.exec_cmd(os.getenv("HOME") .. "/.dotfiles/nixos/scripts/clipboard.sh"))
+hl.bind(mainMod .. " + SHIFT + V",  hl.dsp.exec_cmd(os.getenv("HOME") .. "/.dotfiles/nixos/scripts/clipboard.sh"))
+hl.bind(mainMod .. " + N",          hl.dsp.exec_cmd("swaync-client -t -sw"))
+hl.bind(mainMod .. " + escape",     hl.dsp.exec_cmd("wlogout -b 4 -c 0 -r 0"))
+hl.bind("ALT + Tab",                hl.dsp.exec_cmd("rofi -show window"))
 
 -- Window States
-hl.bind(mainMod .. " + SHIFT + V",     hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mainMod .. " + V",             hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + SHIFT + SPACE", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + M",             hl.dsp.window.fullscreen(1)) -- Maximize / expand (retaining bar & gaps)
 hl.bind(mainMod .. " + F",             hl.dsp.window.fullscreen())  -- True fullscreen
