@@ -59,7 +59,7 @@ LATEST_AUTHOR=$(git log -1 --format="%an" origin/main)
 # Detect if system rebuild or user switch
 CHANGED_FILES=$(git diff --name-only "$LOCAL_COMMIT" "$REMOTE_COMMIT")
 NEEDS_SYSTEM_REBUILD=false
-SYSTEM_PATTERNS=("configuration.nix" "hardware-configuration.nix" "pkgs.nix" "coding.nix" "flake.nix" "flake.lock")
+SYSTEM_PATTERNS=("configuration.nix" "hardware-configuration.nix" "pkgs.nix" "coding.nix" "flake.nix" "flake.lock" "pkgs/")
 
 for file in $CHANGED_FILES; do
     for pattern in "${SYSTEM_PATTERNS[@]}"; do

@@ -43,7 +43,7 @@ echo ""
 
 # Determine if system-level configuration changed
 NEEDS_SYSTEM_REBUILD=false
-SYSTEM_PATTERNS=("configuration.nix" "hardware-configuration.nix" "pkgs.nix" "coding.nix" "flake.nix" "flake.lock")
+SYSTEM_PATTERNS=("configuration.nix" "hardware-configuration.nix" "pkgs.nix" "coding.nix" "flake.nix" "flake.lock" "pkgs/")
 
 for file in $CHANGED_FILES; do
     for pattern in "${SYSTEM_PATTERNS[@]}"; do
