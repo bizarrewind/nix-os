@@ -1,4 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="#f5f0e8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M18.36 6.64a9 9 0 1 1-12.73 0"/>
-  <line x1="12" y1="2" x2="12" y2="12"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" fill="none">
+  <!-- Power Arc -->
+  <path d="M35.3137 12.6863C38.8354 16.208 41 21.0827 41 26.4719C41 35.867 33.3951 43.4719 24 43.4719C14.6049 43.4719 7 35.867 7 26.4719C7 21.0827 9.16459 16.208 12.6863 12.6863" stroke="#f5f0e8" stroke-width="3.2" stroke-linecap="round"/>
+  <!-- Power Line -->
+  <path d="M24 5V22" stroke="#f5f0e8" stroke-width="3.2" stroke-linecap="round"/>
 </svg>

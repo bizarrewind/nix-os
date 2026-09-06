@@ -59,6 +59,14 @@ in
       size = 24;
     };
 
+    # System-wide icon theme
+    icons = {
+      enable = true;
+      package = pkgs.kdePackages.breeze-icons;
+      dark = "breeze-dark";
+      light = "breeze";
+    };
+
     opacity = {
       terminal = 0.80;
     };

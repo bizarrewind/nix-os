@@ -393,6 +393,85 @@ in
       color: #ffffff;
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
     }
+
+    /* Connect / Action Buttons */
+    .orbit-button {
+      background-color: rgba(255, 255, 255, 0.10);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 12px;
+      padding: 6px 16px;
+      font-weight: 700;
+      transition: all 0.2s ease;
+    }
+    .orbit-button label {
+      color: #ffffff;
+    }
+    .orbit-button:hover {
+      background-color: rgba(255, 255, 255, 0.20);
+      border-color: rgba(255, 255, 255, 0.35);
+      color: #ffffff;
+    }
+    .orbit-button.primary {
+      background-color: ${c.base0A};
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #000000;
+    }
+    .orbit-button.primary label {
+      color: #000000;
+    }
+    .orbit-button.primary:hover {
+      background-color: ${c.base09};
+      color: #000000;
+    }
+    .orbit-button.primary:hover label {
+      color: #000000;
+    }
+
+    /* Disconnect / Destructive Buttons */
+    .orbit-button.destructive {
+      background-color: rgba(212, 98, 42, 0.25);
+      border: 1px solid rgba(212, 98, 42, 0.45);
+      color: #ff8a65;
+    }
+    .orbit-button.destructive label {
+      color: #ff8a65;
+    }
+    .orbit-button.destructive:hover {
+      background-color: rgba(212, 98, 42, 0.50);
+      border-color: rgba(212, 98, 42, 0.75);
+      color: #ffffff;
+    }
+    .orbit-button.destructive:hover label {
+      color: #ffffff;
+    }
+
+    /* Overlays (Details / Password / Error / Wired) */
+    .orbit-details-overlay,
+    .orbit-password-overlay,
+    .orbit-error-overlay,
+    .orbit-wired-overlay {
+      background-color: rgba(18, 14, 22, 0.94);
+      border: 1px solid rgba(255, 255, 255, 0.20);
+      border-radius: 12px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85);
+      color: #f5f0e8;
+      margin: 12px;
+      padding: 16px;
+    }
+    .orbit-details-overlay label,
+    .orbit-password-overlay label,
+    .orbit-error-overlay label,
+    .orbit-wired-overlay label {
+      color: #f5f0e8;
+    }
+    .orbit-detail-label {
+      color: #b0bac4;
+    }
+    .orbit-detail-value {
+      color: #ffffff;
+      font-weight: 600;
+    }
   '';
 
   # Direct dotfile symlinks for desktop components

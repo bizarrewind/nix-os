@@ -1,4 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="#f5f0e8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M21.5 2v6h-6"/>
-  <path d="M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.19"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" fill="none">
+  <!-- Top Arc and Arrow -->
+  <path d="M40 24C40 15.1634 32.8366 8 24 8C18.6738 8 13.9856 10.6015 11.0825 14.6" stroke="#f5f0e8" stroke-width="3.2" stroke-linecap="round"/>
+  <path d="M9 8V16H17" stroke="#f5f0e8" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Bottom Arc and Arrow -->
+  <path d="M8 24C8 32.8366 15.1634 40 24 40C29.3262 40 34.0144 37.3985 36.9175 33.4" stroke="#f5f0e8" stroke-width="3.2" stroke-linecap="round"/>
+  <path d="M39 40V32H31" stroke="#f5f0e8" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

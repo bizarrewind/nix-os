@@ -35,7 +35,7 @@
     pywal                     # Wallpaper-based color scheme generator
     xdg-utils                 # Desktop URL and MIME handling
     libnotify                 # Desktop notifications tool (notify-send)
-
+    libreoffice
     # --- Media ---
     mpv
     vlc
@@ -60,6 +60,7 @@
     zoxide                    # Smarter cd command
 
     google-chrome
+    spotify
 
     # --- Games & Fun ---
     osu-lazer-bin

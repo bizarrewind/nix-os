@@ -11,7 +11,9 @@
   # Enable gnome-keyring to save authentication secrets
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.sddm.enableGnomeKeyring = true;
-  
+
+ services.logind.settings.Login.HandlePowerKey = "lock"; 
+
   virtualisation.docker.enable = true;
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs;[
@@ -130,6 +132,7 @@
 
   # Basic system-wide tools installed for everyone
   environment.systemPackages = with pkgs; [
+    google-chrome
     vim
     wget
     home-manager

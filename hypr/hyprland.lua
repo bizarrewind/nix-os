@@ -342,7 +342,8 @@ hl.layer_rule({
 	name = "wlogout-blur",
 	match = { namespace = "logout_dialog" },
 	blur = true,
-	ignore_alpha = 0.0,
+	ignore_alpha = 0.1,
+	animation = "fade",
 })
 
 hl.layer_rule({
@@ -371,14 +372,14 @@ hl.layer_rule({
 	name = "swaync-blur",
 	match = { namespace = "swaync-control-center" },
 	blur = true,
-	ignore_alpha = 0.0,
+	ignore_alpha = 0.5,
 })
 
 hl.layer_rule({
 	name = "swaync-notification-blur",
 	match = { namespace = "swaync-notification-window" },
 	blur = true,
-	ignore_alpha = 0.1,
+	ignore_alpha = 0.5,
 })
 
 hl.window_rule({

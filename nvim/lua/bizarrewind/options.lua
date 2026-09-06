@@ -88,7 +88,8 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     vim.api.nvim_set_hl(0, "TabLineSel",  { fg = "#ffffff", bg = "#444444", bold = true })
     vim.api.nvim_set_hl(0, "TabLineFill", { bg = "NONE" })
     vim.api.nvim_set_hl(0, "StatusLine",  { bg = "NONE", fg = "#cccccc" })
-    vim.api.nvim_set_hl(0, "StatusLineNC",{ bg = "NONE", fg = "#666666" })
-    vim.api.nvim_set_hl(0, "BlinkCmpGhostText", { fg = "#666666", italic = true })
+    local ok, dyn = pcall(dofile, vim.fn.expand("~/.config/dynamic-colors/nvim-palette.lua"))
+    local ghost_fg = (ok and dyn and dyn.smoke) or "#8a8070"
+    vim.api.nvim_set_hl(0, "BlinkCmpGhostText", { fg = ghost_fg, italic = true })
   end,
 })

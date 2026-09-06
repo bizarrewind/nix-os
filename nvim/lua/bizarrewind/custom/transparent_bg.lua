@@ -59,6 +59,8 @@ local function set_transparent_bg()
 	hl(0, "DiffChange",       { fg = palette.fire_amber })
 	hl(0, "DiffDelete",       { fg = palette.ember })
 	hl(0, "WinSeparator",     { fg = palette.ash_medium })
+	hl(0, "BlinkCmpGhostText", { fg = palette.smoke or "#8a8070", italic = true })
+	hl(0, "NonText",          { fg = palette.smoke or "#8a8070" })
 end
 
 -- Call the function to apply transparency
