@@ -5,7 +5,7 @@
 #
 # Run setup.sh for a guided setup:  bash setup.sh
 {
-  # Your Linux username (what you'd type at the login prompt)
+  # Your local Linux system username (what you type at the login prompt — NOT a GitHub ID)
   username = "youruser";
 
   # Enable keyd keyboard remapping daemon (disabled by default)

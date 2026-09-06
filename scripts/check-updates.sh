@@ -44,7 +44,6 @@ if [ "$1" = "--rate-limit" ]; then
     echo "$NOW" > "$CACHE_FILE"
 fi
 
-# Fetch updates silently from configured remote (timeout 3s)
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "main")
 if [ "$CURRENT_BRANCH" = "HEAD" ]; then
     CURRENT_BRANCH="main"

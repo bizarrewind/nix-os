@@ -66,40 +66,28 @@ Stylix-powered dynamic theming · Waybar · Neovim · Rofi · SwayNC · wlogout
 
 ### Prerequisites
 
-- A fresh NixOS install (flakes enabled: `experimental-features = nix-command flakes`)
-
-> [!TIP]
-> **No GitHub account or Git required**: You can clone with Git or download the repository archive directly into `~/.dotfiles/nixos`.
+- NixOS with flakes enabled (`experimental-features = nix-command flakes`)
+- No GitHub ID or GitHub account required — the repository is completely public and offline-friendly!
 
 ### Installation
 
-**Option A: Using Git**
 ```bash
-git clone https://github.com/YOUR_USERNAME/YOUR_REPO ~/.dotfiles/nixos
+# 1. Clone the repository (public HTTPS — no GitHub login or SSH key needed)
+git clone https://github.com/bizarrewind/nix-os.git ~/.dotfiles/nixos
 cd ~/.dotfiles/nixos
-```
 
-**Option B: Direct Download (No Git / No GitHub account required)**
-```bash
-mkdir -p ~/.dotfiles/nixos
-# Extract downloaded dotfiles archive into ~/.dotfiles/nixos
-cd ~/.dotfiles/nixos
-```
-
-### Run Setup Assistant
-```bash
-# Run the interactive setup assistant
-# This will:
-#   - Detect or ask for your Linux username
-#   - Copy your machine's hardware-configuration.nix from /etc/nixos
-#   - Create user-config.nix
-#   - Optionally build and activate immediately
+# 2. Run the interactive setup assistant
+#    This will:
+#      - Detect or ask for your local Linux username (NOT a GitHub ID)
+#      - Copy your machine's hardware-configuration.nix from /etc/nixos
+#      - Create user-config.nix
+#      - Build and activate your desktop
 bash setup.sh
 ```
 
 > [!IMPORTANT]
 > **Do not skip `setup.sh`.** NixOS requires a `hardware-configuration.nix` that matches
-> your machine's disks and UUIDs. Running `setup.sh` automatically copies the correct one
+> your machine's drive UUIDs. Running `setup.sh` automatically copies the correct one
 > from `/etc/nixos/hardware-configuration.nix`.
 
 ### Manual Setup (if you prefer)

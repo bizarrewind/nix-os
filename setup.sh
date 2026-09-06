@@ -28,16 +28,17 @@ fi
 echo ""
 
 # 2. USER CONFIGURATION
-echo "[2/4] Setting up User Account..."
+echo "[2/4] Setting up Local User Account..."
+echo "  Note: This is your local Linux login/home username (NOT a GitHub ID)."
 DETECTED_USER="${USER:-$(whoami)}"
 if [ "$DETECTED_USER" = "root" ]; then
     DETECTED_USER="nixos"
 fi
 
-read -p "Enter your primary username [default: $DETECTED_USER]: " CHOSEN_USER
+read -p "Enter your local Linux username [default: $DETECTED_USER]: " CHOSEN_USER
 CHOSEN_USER="${CHOSEN_USER:-$DETECTED_USER}"
 
-echo "  Target username: $CHOSEN_USER"
+echo "  Local user account: $CHOSEN_USER"
 echo ""
 
 # 3. KEYBOARD REMAPPING (KEYD)
