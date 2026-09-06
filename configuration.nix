@@ -1,5 +1,12 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
+let
+  userConfig = if builtins.pathExists ./user-config.nix
+    then import ./user-config.nix
+    else { username = "vexil"; enableKeyd = false; };
+  currentUsername = userConfig.username or "vexil";
+  enableKeyd = userConfig.enableKeyd or false;
+in
 {
   # Include other configuration files (hardware details, packages, theming)
   imports = [
@@ -75,7 +82,7 @@
 
   # Configure keyboard remapping (Caps Lock acts as Ctrl/Escape)
   services.keyd = {
-    enable = true;
+    enable = enableKeyd;
     keyboards = {
       default = {
         ids = [ "*" ];
@@ -122,9 +129,10 @@
   };
 
   # Define the main user account and their personal apps
-  users.users."vexil" = {
+  users.users.${currentUsername} = {
     isNormalUser = true;
-    description = "Vexil";
+    description = currentUsername;
+    initialPassword = "nixos"; # Default password for fresh installations
     extraGroups = [ "networkmanager" "wheel" "docker"]; # Gives admin (sudo) access
     shell = pkgs.zsh;
     packages = with pkgs; [

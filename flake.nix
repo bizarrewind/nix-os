@@ -18,7 +18,26 @@
     stylix.url = "github:danth/stylix";
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, stylix, ... }@inputs:
+    let
+      userConfig = if builtins.pathExists ./user-config.nix
+        then import ./user-config.nix
+        else { username = "vexil"; };
+      username = userConfig.username or "vexil";
+      
+      mkHomeConfig = user: home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs {
+          system = "x86_64-linux";
+          config.allowUnfree = true;
+        };
+        extraSpecialArgs = { inherit inputs; };
+        modules = [
+          ./home.nix
+          ./stylix.nix
+          stylix.homeModules.stylix
+        ];
+      };
+    in {
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -31,19 +50,11 @@
     };
 
     homeConfigurations = {
-      "vexil" = home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {
-          system = "x86_64-linux";
-          config.allowUnfree = true;
-        };
-        extraSpecialArgs = { inherit inputs; };
-        modules = [
-          ./home.nix
-          ./stylix.nix
-          stylix.homeModules.stylix
-        ];
-      };
-      "vexil@nixos" = self.homeConfigurations."vexil";
-    };
+      "vexil" = mkHomeConfig "vexil";
+      "vexil@nixos" = mkHomeConfig "vexil";
+    } // (if username != "vexil" then {
+      "${username}" = mkHomeConfig username;
+      "${username}@nixos" = mkHomeConfig username;
+    } else {});
   };
 }

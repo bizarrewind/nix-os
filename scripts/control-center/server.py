@@ -233,6 +233,22 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
                 write_json(config_file, {"enabled": bool(data['auto_update'])})
             except Exception as e:
                 print("Error saving auto-update config:", e)
+
+        if 'enable_keyd' in data:
+            user_cfg_file = os.path.join(DOTFILES, 'user-config.nix')
+            try:
+                val = "true" if data['enable_keyd'] else "false"
+                if os.path.exists(user_cfg_file):
+                    with open(user_cfg_file, 'r') as f:
+                        cfg_text = f.read()
+                    if 'enableKeyd' in cfg_text:
+                        cfg_text = re.sub(r'enableKeyd\s*=\s*(true|false);', f'enableKeyd = {val};', cfg_text)
+                    else:
+                        cfg_text = re.sub(r'\}\s*$', f'  enableKeyd = {val};\n}}\n', cfg_text)
+                    with open(user_cfg_file, 'w') as f:
+                        f.write(cfg_text)
+            except Exception as e:
+                print("Error updating user-config.nix for keyd:", e)
         
         # 3. Trigger rebuild
         rebuild_cmd = f'cd {DOTFILES}; echo "Applying global themes and colors via NixOS Rebuild..."; sudo nixos-rebuild switch; echo ""; echo "Rebuild complete (if there are errors, they will be listed above)."; read -p "Press ENTER to close window..."'
@@ -310,6 +326,17 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
                     if match: waybar_radius = int(match.group(1))
             except: pass
 
+            enable_keyd = False
+            user_cfg_file = os.path.join(DOTFILES, 'user-config.nix')
+            try:
+                if os.path.exists(user_cfg_file):
+                    with open(user_cfg_file, 'r') as f:
+                        cfg_text = f.read()
+                    match = re.search(r'enableKeyd\s*=\s*(true|false);', cfg_text)
+                    if match:
+                        enable_keyd = match.group(1) == 'true'
+            except: pass
+
             data = {
                 "wallpapers": wallpapers,
                 "current_wallpaper": current_wallpaper,
@@ -323,7 +350,8 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
                 "color_preset": color_preset,
                 "waybar_modules": waybar_modules,
                 "waybar_radius": waybar_radius,
-                "auto_update": auto_update
+                "auto_update": auto_update,
+                "enable_keyd": enable_keyd
             }
 
             self.send_response(200)

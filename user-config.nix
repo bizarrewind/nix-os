@@ -1,0 +1,4 @@
+{
+  username = "vexil";
+  enableKeyd = false;
+}

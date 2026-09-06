@@ -1,13 +1,17 @@
 { config, pkgs, inputs, lib, ... }: 
 
 let
+  userConfig = if builtins.pathExists ./user-config.nix
+    then import ./user-config.nix
+    else { username = "vexil"; };
+  currentUsername = userConfig.username or "vexil";
   c = config.lib.stylix.colors.withHashtag;
   rgb = config.lib.stylix.colors;
   orbit = pkgs.callPackage ./pkgs/orbit.nix {};
 in
 {
-  home.username = "vexil";
-  home.homeDirectory = "/home/vexil";
+  home.username = currentUsername;
+  home.homeDirectory = "/home/${currentUsername}";
   home.stateVersion = "26.05";
 
   # User packages managed via Home Manager (no full system rebuild needed!)
