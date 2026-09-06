@@ -20,7 +20,8 @@ hl.bind(mainMod .. " + O",      hl.dsp.exec_cmd("orbit toggle top-right"))
 
 -- Window States
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
+hl.bind(mainMod .. " + M", hl.dsp.window.fullscreen(1)) -- Maximize / expand (retaining bar & gaps)
+hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())  -- True fullscreen
 hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen(1))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + T", hl.dsp.layout("togglesplit"))    
