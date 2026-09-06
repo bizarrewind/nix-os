@@ -15,5 +15,18 @@ case "$ACTION" in
 esac
 
 BRIGHT=$(brightnessctl -m | awk -F, '{print substr($4, 1, length($4)-1)}')
+[ -z "$BRIGHT" ] && BRIGHT=50
 
-notify-send -a "Brightness" -h string:x-canonical-private-synchronous:osd-bright -h int:value:"$BRIGHT" -i display-brightness "Brightness" "${BRIGHT}%" -t 1200
+ICON_DIR="$HOME/.config/swaync/icons"
+if [ "$BRIGHT" -lt 35 ]; then
+    ICON="$ICON_DIR/brightness-low.svg"
+    [ ! -f "$ICON" ] && ICON="notification-display-brightness-low"
+elif [ "$BRIGHT" -lt 70 ]; then
+    ICON="$ICON_DIR/brightness-medium.svg"
+    [ ! -f "$ICON" ] && ICON="notification-display-brightness-medium"
+else
+    ICON="$ICON_DIR/brightness-high.svg"
+    [ ! -f "$ICON" ] && ICON="notification-display-brightness-high"
+fi
+
+notify-send -a "Brightness" -h string:x-canonical-private-synchronous:osd-bright -h int:value:"$BRIGHT" -i "$ICON" "Brightness" "${BRIGHT}%" -t 1200

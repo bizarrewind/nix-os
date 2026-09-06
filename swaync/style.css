@@ -4,8 +4,8 @@
    ============================================================================= */
 
 :root {
-    --notification-icon-size: 64px;
-    --notification-app-icon-size: 24px;
+    --notification-icon-size: 48px;
+    --notification-app-icon-size: 22px;
     --notification-group-icon-size: 32px;
     --mpris-album-art-icon-size: 72px;
 }
@@ -28,10 +28,19 @@
     font-weight: 600;
 }
 
-/* ── Reset outer window so only the control-center panel renders ───────── */
+/* ── Reset outer layer surfaces so ONLY actual cards render ─────────────── */
+notificationwindow,
+window,
+window.background,
+.floating-notifications,
+.floating-notifications.background,
+.notification-row,
+.notification-row:focus,
+.notification-background,
 blankwindow,
 .blank-window {
     background: transparent;
+    background-color: transparent;
     border: none;
     box-shadow: none;
 }
@@ -204,22 +213,22 @@ blankwindow,
 
 /* ── Floating Notifications (Popups) ────────────────────────────────────── */
 .floating-notifications .notification {
-    background-color: rgba(14, 15, 22, 0.88);
-    border: 1px solid @glass-border-side;
-    border-top: 1.5px solid @glass-border-light;
-    border-bottom: 1.5px solid @glass-border-bottom;
+    background-color: rgba(16, 17, 24, 0.94);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-top: 1.5px solid rgba(255, 255, 255, 0.32);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 12px;
-    margin: 8px;
+    margin: 6px 12px;
     box-shadow:
-        0 12px 36px rgba(0, 0, 0, 0.60),
-        inset 0 1px 0 rgba(255, 255, 255, 0.20);
-    padding: 6px;
+        0 14px 38px rgba(0, 0, 0, 0.65),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    padding: 6px 8px;
 }
 
 /* ── Notification Content & Text ────────────────────────────────────────── */
 .notification-content {
     background: transparent;
-    padding: 8px 10px;
+    padding: 6px 8px;
 }
 
 .notification-default-action {
@@ -233,7 +242,7 @@ blankwindow,
 
 .summary {
     color: @text-bright;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 700;
 }
 
@@ -249,10 +258,12 @@ blankwindow,
     font-size: 11px;
 }
 
-/* ── Notification Icons (Sharp HiDPI) ───────────────────────────────────── */
+/* ── Notification Icons (Sharp HiDPI 48px standard) ─────────────────────── */
 .image {
-    min-width: 56px;
-    min-height: 56px;
+    min-width: 48px;
+    min-height: 48px;
+    max-width: 48px;
+    max-height: 48px;
     border-radius: 8px;
     margin-right: 12px;
 }
@@ -260,7 +271,30 @@ blankwindow,
 .app-icon {
     min-width: 22px;
     min-height: 22px;
+    max-width: 22px;
+    max-height: 22px;
     margin: 4px;
+}
+
+/* ── Progress Bar (Synchronous OSD pills) ────────────────────────────────── */
+progressbar {
+    margin-top: 8px;
+    border-radius: 6px;
+    background: transparent;
+}
+
+progressbar trough {
+    background-color: rgba(255, 255, 255, 0.12);
+    min-height: 5px;
+    border-radius: 6px;
+    border: none;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+progressbar progress {
+    background: linear-gradient(90deg, #e8a83a, #f7b731);
+    border-radius: 6px;
+    min-height: 5px;
 }
 
 /* ── Action Buttons ─────────────────────────────────────────────────────── */

@@ -32,6 +32,7 @@
     # --- Theming & Integration ---
     nwg-look                  # GTK theme and cursor switcher GUI
     bibata-cursors            # Cursor theme
+    papirus-icon-theme        # High-res SVG vector icons
     pywal                     # Wallpaper-based color scheme generator
     xdg-utils                 # Desktop URL and MIME handling
     libnotify                 # Desktop notifications tool (notify-send)

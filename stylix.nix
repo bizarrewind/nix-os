@@ -62,9 +62,9 @@ in
     # System-wide icon theme
     icons = {
       enable = true;
-      package = pkgs.kdePackages.breeze-icons;
-      dark = "breeze-dark";
-      light = "breeze";
+      package = pkgs.papirus-icon-theme;
+      dark = "Papirus-Dark";
+      light = "Papirus-Light";
     };
 
     opacity = {
